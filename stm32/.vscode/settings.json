@@ -1,0 +1,37 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Cortex Debug",
+			"cwd": "${workspaceRoot}",
+			"executable": "./build/gpio.elf",
+			"request": "launch",
+			"type": "cortex-debug",
+			"servertype": "jlink",
+			"device": "Cortex-M0",
+			"interface": "swd",
+			"ipAddress": null,
+            "serialNumber": null,
+		}
+	],
+	"git.ignoreLimitWarning": true,
+	"files.associations": {
+		"main.h": "c",
+		"stm32f051x8.h": "c",
+		"stm32f0xx.h": "c",
+		"tim.h": "c",
+		"stm32f0xx_ll_crs.h": "c",
+		"stm32f0xx_ll_rcc.h": "c",
+		"stm32f0xx_ll_pwr.h": "c",
+		"stm32f0xx_ll_cortex.h": "c",
+		"stm32f0xx_ll_system.h": "c",
+		"stm32f0xx_ll_dma.h": "c",
+		"stm32f0xx_ll_gpio.h": "c",
+		"stepmotorlib.h": "c",
+		"stepmotorparams.h": "c",
+		"cmsis_gcc.h": "c",
+		"axis.h": "c",
+		"gpio.h": "c",
+		"stepmotordriver.h": "c"
+	}
+}
