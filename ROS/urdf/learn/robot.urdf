@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<robot name="test">
+
+    <link name="link_chassis">
+        <pose> 0 0 0.1 0 0 0</pose>
+
+        <inertial>
+            <origin xyz="0.0 0.0 0.1" rpy="0.0 0.0 0.0"/>
+            <mass value="5.0"/>
+            <inertia ixx="0.4" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.1" izz="0.5"/>
+        </inertial>
+
+        <collision name="collision_chassis">
+            <geometry>
+                <box size="3 2 1"/>
+            </geometry>
+        </collision>
+
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="2.0 2.0 2.0"/>
+            </geometry>
+        </visual>
+    </link>
+
+</robot>

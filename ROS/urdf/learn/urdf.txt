@@ -1,0 +1,17 @@
+<robot>
+    <link>
+        <internal>
+        </internal>
+        <visual>
+            <geometry>
+            </geometry>
+            <material>
+                <color rgba = "1 0 0 1">
+            </material>
+        </visual>
+    </link>
+
+    <joint>
+        ...
+    </joint>
+</robot>
