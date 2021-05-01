@@ -1,7 +1,7 @@
 params = mv1_params_t ();
-params.r   = 2;
-params.h1  = 25;
-params.h2  = 23;
-params.H   = 26;
-params.h_d = 6;
-params.h   = 3;
+params.r   = 65;
+params.h1  = 178;
+params.h2  = 180;
+params.H   = 230;
+params.h_d = 76;
+params.a   = 81.6;

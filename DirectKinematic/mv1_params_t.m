@@ -2,41 +2,67 @@ classdef mv1_params_t < handle
     properties
         r,
         h1, h2, H,
-        h, h_d;
+        a, h_d;
     end
     
     properties
-        a, theta
+        h, theta
     end
     
     methods
         function set (prms, name_param, value)
             switch name_param
                 case 'r'
-                    prms.r = value;
+                    prms.r   = value;
                 case 'h1'
-                    prms.h1 = value;
+                    prms.h1  = value;
                 case 'h2'
-                    prms.h2 = value;
+                    prms.h2  = value;
                 case 'H'
-                    prms.H = value;
-                case 'h'
-                    prms.h = value;
+                    prms.H   = value;
+                case 'a'
+                    prms.a   = value;
                 case 'h_d'
                     prms.h_d = value;
                 otherwise
-                    error 'Incorrect name param'
+                    error_str = strcat ('Incorrect name param: ', name_param);
+                    error (error_str);
+            end
+        end
+        
+        function value = get (prms, name_param)
+            switch name_param
+                case 'r'
+                    value = prms.r;
+                case 'h1'
+                    value = prms.h1;
+                case 'h2'
+                    value = prms.h2;
+                case 'H'
+                    value = prms.H;
+                case 'a'
+                    value = prms.a;
+                case 'h_d'
+                    value = prms.h_d;
+                otherwise
+                    error_str = strcat ('Incorrect name param: ', name_param);
+                    error (error_str);
             end
         end
         
         function calc_theta (mv1_params)
-            mv1_params.theta = atan (mv1_params.h / mv1_params.h_d);
+            mv1_params.theta = acos (mv1_params.h_d / mv1_params.a);
         end
         
-        function calc_a (mv1_params)
-            mv1_params.a = sqrt (mv1_params.h_d ^ 2 + mv1_params.h ^ 2);
+        function calc_h (prms)
+            prms.h = sqrt (prms.a ^ 2 - prms.h_d ^ 2);
         end
-
+        
+        function calc_inner_params (prms)
+            prms.calc_theta ();
+            prms.calc_h ();
+        end
+        
         function verify (mv1_params)
             if  isnumeric (mv1_params.r)  && ...
                 isnumeric (mv1_params.h1) && isnumeric (mv1_params.h2)  && ...
@@ -59,7 +85,7 @@ classdef mv1_params_t < handle
         end
         
         function S = calc_S (prms, phi, A, B)
-            S = sqrt ((prms.r * sin (phi)) ^ 2 * (2 * B * prms.h2 ^ 2 - A - prms.h2 ^ 4));
+            S = prms.r * sin (phi) * sqrt ((2 * B * prms.h2 ^ 2 - A - prms.h2 ^ 4));
         end
         
         function A = calc_A (prms, phi)
@@ -82,32 +108,29 @@ classdef mv1_params_t < handle
             A = calc_A (prms, phi);
             B = calc_B (prms, phi);
             S = calc_S (prms, phi, A, B);
-            
+           
             B_rel = calc_B_rel (prms, phi, S);
             D_rel = calc_D_rel (prms, phi, B);
             
             L = calc_L (prms, phi);
             Z = calc_Z (prms, phi);
 
-            x_rel = (D_rel + B_rel) / (2 * prms.r * Z);
-            z_rel = (L + S) / (2 * Z);
+            x_rel = -(D_rel + B_rel) / (2 * prms.r * Z);
+            z_rel = +(L + S) / (2 * Z);
         end
-
+        
         function point = calc_end_point (prms, phi1, phi2)
             phi = phi2 - phi1;
-            prms.calc_a ();
+            prms.calc_inner_params ();
             
             [x_rel, z_rel] = calc_rel_point (prms, phi);
             
-            prms.calc_theta ();
-            theta = prms.theta;
+            R_phi1  = matrixRotate (phi1);
+            R_theta = matrixRotate (prms.theta);
             
-            R_phi = [cos(theta), -sin(theta); sin(theta), cos(theta)];
-            R_tht = [cos(theta), sin(theta); -sin(theta), cos(theta)];
+            p1 = [-sin(phi1); cos(phi1)] * prms.h1;
             
-            p1 = [sin(phi1); cos(phi1)] * prms.h;
-            
-            point = p1 + prms.H / prms.a * R_tht * R_phi * [x_rel; z_rel];
+            point = p1 + (R_theta * prms.H / prms.a - eye (2))* R_phi1 * [x_rel; z_rel];
         end
     end
 end

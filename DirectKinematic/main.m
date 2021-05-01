@@ -1,38 +1,23 @@
-function sliderchanging
-% Create figure window and components
-
-fig = uifigure('Position',[100 100 350 275]);
-
-cg = uigauge(fig,'Position',[100 100 120 120]);
-
-sld = uislider(fig,...
-               'Position',[100 75 120 3],...
-               'ValueChangingFcn',@(sld,event) sliderMoving(event,cg));
-
-end
-
-% Create ValueChangingFcn callback
-function sliderMoving(event,cg)
-cg.Value = event.Value;
-end
-
 clc;
 clear;
-surf ();
+
 mv1_params;
 
-params = mv1_params ();
+steps_vars = 1;
+koef_var = 0.01;
 
-params.r = 2;
-params.h1 = 25;
-params.h2 = 23;
-params.H = 26;
-params.h_d = 6;
-params.h = 3;
+str_vars = ["r" "h1" "h2" "H" "a" "h_d"];
+num_str_vars = size (str_vars, 2);
 
-%draw_mv1_surf (params);
+for j = 1:num_str_vars
+    val = params.get (str_vars(j));
+    str_vars(j)
+    for i = -1:steps_vars
+        params.set (str_vars(j), val * (1 + i * koef_var));
+        params.calc_end_point (deg2rad (0), deg2rad (-90));
+    end
+    
+    params.set (str_vars(j), val);
+end
 
-fig = uifigure;
-pnl = uipanel(fig);
-sld = uislider(pnl, 'Position',[50 50 180 3], ...
-                    'Limits', [-60, pi]);
+params.calc_end_point (deg2rad (0), deg2rad (-45));
