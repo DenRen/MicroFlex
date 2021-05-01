@@ -32,3 +32,4 @@
 *.app
 *.elf
 stm32/build/*
+*.asv
