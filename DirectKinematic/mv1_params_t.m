@@ -1,15 +1,21 @@
 classdef mv1_params_t < handle
-    properties
+    properties (Access = public)
         r,
         h1, h2, H,
         a, h_d;
     end
     
-    properties
+    properties (Access = public)
+        gear_1_leading_num_teeth, gear_1_slave_num_teeth,
+        gear_2_leading_num_teeth, gear_2_slave_num_teeth,
+        gear_3_leading_num_teeth, gear_3_slave_num_teeth
+    end
+    
+    properties (Access = private)
         h, theta
     end
     
-    methods
+    methods (Access = public)
         function set (prms, name_param, value)
             switch name_param
                 case 'r'
@@ -50,14 +56,6 @@ classdef mv1_params_t < handle
             end
         end
         
-        function calc_theta (mv1_params)
-            mv1_params.theta = acos (mv1_params.h_d / mv1_params.a);
-        end
-        
-        function calc_h (prms)
-            prms.h = sqrt (prms.a ^ 2 - prms.h_d ^ 2);
-        end
-        
         function calc_inner_params (prms)
             prms.calc_theta ();
             prms.calc_h ();
@@ -71,8 +69,18 @@ classdef mv1_params_t < handle
                 
                 return;
             end
-
+            
             error ('mv1 params: error verificator');
+        end
+    end
+    
+    methods (Access = private)
+        function calc_theta (mv1_params)
+            mv1_params.theta = acos (mv1_params.h_d / mv1_params.a);
+        end
+        
+        function calc_h (prms)
+            prms.h = sqrt (prms.a ^ 2 - prms.h_d ^ 2);
         end
         
         function Z = calc_Z (prms, phi)
@@ -119,18 +127,46 @@ classdef mv1_params_t < handle
             z_rel = +(L + S) / (2 * Z);
         end
         
-        function point = calc_end_point (prms, phi1, phi2)
-            phi = phi2 - phi1;
+        function ratio = get_ratio (prms, num_motor)
+            switch num_motor
+                case 1
+                    ratio = prms.gear_1_leading_num_teeth / prms.gear_1_slave_num_teeth;
+                case 2
+                    ratio = prms.gear_2_leading_num_teeth / prms.gear_2_slave_num_teeth;
+                case 3
+                    ratio = prms.gear_3_leading_num_teeth / prms.gear_3_slave_num_teeth;
+                otherwise
+                    str_error = strcat ("Incorrect num_motor: ", num2str (num_motor));
+                    error (str_error);
+            end
+        end
+        
+        function angle = motor_angle2kinematic_angle (prms, num_motor, angle)
+            angle = -prms.get_ratio (num_motor) * angle;
+        end
+    end
+    
+    methods (Access = public)        
+        function point = calc_end_point (prms, phi0, phi1, phi2)
+            phi = phi1 - phi0;
             prms.calc_inner_params ();
             
             [x_rel, z_rel] = calc_rel_point (prms, phi);
             
-            R_phi1  = matrixRotate (phi1);
+            R_phi0  = matrixRotate (phi0);
             R_theta = matrixRotate (prms.theta);
             
-            p1 = [-sin(phi1); cos(phi1)] * prms.h1;
+            p1 = [-sin(phi0); cos(phi0)] * prms.h1;
             
-            point = p1 + (R_theta * prms.H / prms.a - eye (2))* R_phi1 * [x_rel; z_rel];
+            point = p1 + (R_theta * prms.H / prms.a - eye (2))* R_phi0 * [x_rel; z_rel];
+        end
+        
+        function point = calc_end_point_rel_motors (prms, motor_phi0, motor_phi1, motor_phi2)
+            phi0 = prms.motor_angle2kinematic_angle (motor_phi0);
+            phi1 = prms.motor_angle2kinematic_angle (motor_phi1);
+            phi2 = prms.motor_angle2kinematic_angle (motor_phi2);
+            
+            point = prms.calc_end_point (phi0, phi1, phi2);
         end
     end
 end

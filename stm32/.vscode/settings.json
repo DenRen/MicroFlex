@@ -32,6 +32,7 @@
 		"cmsis_gcc.h": "c",
 		"axis.h": "c",
 		"gpio.h": "c",
-		"stepmotordriver.h": "c"
+		"stepmotordriver.h": "c",
+		"mfv1.h": "c"
 	}
 }

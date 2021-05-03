@@ -9,11 +9,9 @@ typedef struct {
     uint32_t       counters  [NUMBER_STEP_MOTORS];
 } sm_driver_memory_t;
 
-void ST_Step_Driver ();
+void SM_Step_Driver ();
+void SM_Step_Driver_Enable ();
 
-void SM_Driver_Reset_Step_Motors ();
-void SM_Driver_Reset_Unit_Tasks ();
-void SM_Driver_Reset_Counters ();
 void SM_Driver_Reset_All ();
 
 int SM_Driver_Init_Step_Motor (uint8_t number_step_motor, step_motor_t* step_motor);

@@ -29,6 +29,7 @@
 #include "StepMotorParams.h"
 #include "StepMotorDriver.h"
 #include "axis.h"
+#include "MFv1.h"
 
 /* USER CODE END Includes */
 
@@ -133,15 +134,11 @@ int main(void)
     ErrorActions ();
 
   PrepareTimes ();
-
+  SM_Step_Driver_Enable ();
+  
   SM_Driver_Enable_Step_Motors ();
-  for (int i = 0; i < 3; ++i) {
-    AxisRotate (0, +PI_HALF_URAD, 1000 * 500);
-    AxisRotate (1, -PI_HALF_URAD / 8, 1000 * 500);
-    LL_mDelay (1000);
-    AxisRotate (2, PI_HALF_URAD / 4, 1000 * 500);
-  }
-  AxisRotate (1, PI_HALF_URAD, 1000 * 500);
+
+  MFv1_Collibrate_Direction ();
 
   while (1)
   {

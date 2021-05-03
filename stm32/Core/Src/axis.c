@@ -25,8 +25,6 @@ int AxisRotate (uint16_t number_step_motor, int urad, int usec) {
     };
     
     SM_Driver_Set_Task (number_step_motor, &unit_task);
-
-    LL_TIM_EnableCounter (SM_DRIVER_TIMER);
     
     return 0;
 }

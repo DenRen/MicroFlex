@@ -1,5 +1,6 @@
 #include "StepMotorDriver.h"
 #include "StepMotorParams.h"
+#include "MFv1.h"
 
 #include "tim.h"
 #include <stdint.h>
@@ -57,7 +58,7 @@ void SM_Disable_TIM_Channel (timer_channel_t timer_channel) {
 }
 
 // Только для одного таймера
-void ST_Step_Driver () {
+void SM_Step_Driver () {
     static uint8_t channels_is_active = 0;
     
     #define DISABLE_PRELOAD_CHx(num_channel)\
@@ -136,6 +137,9 @@ void ST_Step_Driver () {
     }
 }
 
+void SM_Step_Driver_Enable () {
+    LL_TIM_EnableCounter (SM_DRIVER_TIMER);
+}
 
 // Step motor driver memory ---------------------------------
 
@@ -177,9 +181,41 @@ int SM_Driver_Verifier () {
     return 0;
 }
 
+#if ((MOTOR_0_DIRECTION_ROTATION == MOTOR_1_DIRECTION_ROTATION) && \
+     (MOTOR_1_DIRECTION_ROTATION == MOTOR_2_DIRECTION_ROTATION))
+    #define MOTOR_DIRECTIONS_IS_EQUAL
+#endif
+
 void SM_Driver_Set_Direction (uint16_t number_step_motor, uint8_t direction) {
-    SM_Set_Direction (&drimem.step_motor[number_step_motor], direction);
+
+#ifdef MOTOR_DIRECTIONS_IS_EQUAL
+    #if (MOTOR_0_DIRECTION_ROTATION == 1)
+        SM_Set_Direction (&drimem.step_motor[number_step_motor], +direction);
+    #else
+        SM_Set_Direction (&drimem.step_motor[number_step_motor], -direction);
+    #endif
+#else
+    static int _motor_dirs[NUMBER_STEP_MOTORS] = {
+        #if (NUMBER_STEP_MOTORS) >= (1)
+              MOTOR_0_DIRECTION_ROTATION
+        #endif
+        #if (NUMBER_STEP_MOTORS) >= (2)
+            , MOTOR_1_DIRECTION_ROTATION
+        #endif
+        #if (NUMBER_STEP_MOTORS) >= (3)
+            , MOTOR_2_DIRECTION_ROTATION
+        #endif
+        #if (NUMBER_STEP_MOTORS) >= (4)
+            , MOTOR_3_DIRECTION_ROTATION
+        #endif
+    };
+
+    SM_Set_Direction (&drimem.step_motor[number_step_motor],
+                      (2 * direction - 1) * _motor_dirs[number_step_motor]);
+#endif
+
 }
+
 
 void SM_Driver_Enable_Step_Motors () {
     SM_Enable (drimem.step_motor);

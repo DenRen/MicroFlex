@@ -50,6 +50,12 @@ int InitializeDriverStepMotors () {
         }
     };
 
+    SM_Disable_TIM_Channel (step_motor_0.timer_channel);
+    SM_Disable_TIM_Channel (step_motor_1.timer_channel);
+    SM_Disable_TIM_Channel (step_motor_1.timer_channel);
+
+    LL_TIM_DisableCounter (SM_PULSE_TIMER);
+
     if (SM_Driver_Init_Step_Motor (0, &step_motor_0) == -1 ||
         SM_Driver_Init_Step_Motor (1, &step_motor_1) == -1 ||
         SM_Driver_Init_Step_Motor (2, &step_motor_2) == -1)
@@ -57,23 +63,6 @@ int InitializeDriverStepMotors () {
 
     if (SM_Driver_Verifier () == -1)
         return -1;
-
-    SM_Disable_TIM_Channel ((timer_channel_t) {
-        .TIMx = TIM2,
-        .CHANNEL_CHx = SM_0_TIM_CHANNEL
-    });
-
-    SM_Disable_TIM_Channel ((timer_channel_t) {
-        .TIMx = TIM2,
-        .CHANNEL_CHx = SM_1_TIM_CHANNEL
-    });
-
-    SM_Disable_TIM_Channel ((timer_channel_t) {
-        .TIMx = TIM2,
-        .CHANNEL_CHx = SM_2_TIM_CHANNEL
-    });
-
-    LL_TIM_DisableCounter (TIM2);
 
     return 0;
 }
