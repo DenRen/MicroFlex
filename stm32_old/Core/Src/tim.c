@@ -27,11 +27,6 @@
 /* TIM2 init function */
 void MX_TIM2_Init(void)
 {
-
-  /* USER CODE BEGIN TIM2_Init 0 */
-
-  /* USER CODE END TIM2_Init 0 */
-
   LL_TIM_InitTypeDef TIM_InitStruct = {0};
   LL_TIM_OC_InitTypeDef TIM_OC_InitStruct = {0};
 
@@ -39,9 +34,6 @@ void MX_TIM2_Init(void)
   /* Peripheral clock enable */
   LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_TIM2);
 
-  /* USER CODE BEGIN TIM2_Init 1 */
-
-  /* USER CODE END TIM2_Init 1 */
   TIM_InitStruct.Prescaler = 47;
   TIM_InitStruct.CounterMode = LL_TIM_COUNTERMODE_UP;
   TIM_InitStruct.Autoreload = 9;
@@ -57,9 +49,13 @@ void MX_TIM2_Init(void)
   LL_TIM_OC_Init(TIM2, LL_TIM_CHANNEL_CH1, &TIM_OC_InitStruct);
   LL_TIM_OC_DisableFast(TIM2, LL_TIM_CHANNEL_CH1);
   LL_TIM_OC_EnablePreload(TIM2, LL_TIM_CHANNEL_CH2);
+  TIM_OC_InitStruct.OCState = LL_TIM_OCSTATE_DISABLE;
+  TIM_OC_InitStruct.OCNState = LL_TIM_OCSTATE_DISABLE;
   LL_TIM_OC_Init(TIM2, LL_TIM_CHANNEL_CH2, &TIM_OC_InitStruct);
   LL_TIM_OC_DisableFast(TIM2, LL_TIM_CHANNEL_CH2);
   LL_TIM_OC_EnablePreload(TIM2, LL_TIM_CHANNEL_CH3);
+  TIM_OC_InitStruct.OCState = LL_TIM_OCSTATE_DISABLE;
+  TIM_OC_InitStruct.OCNState = LL_TIM_OCSTATE_DISABLE;
   LL_TIM_OC_Init(TIM2, LL_TIM_CHANNEL_CH3, &TIM_OC_InitStruct);
   LL_TIM_OC_DisableFast(TIM2, LL_TIM_CHANNEL_CH3);
   LL_TIM_SetOnePulseMode(TIM2, LL_TIM_ONEPULSEMODE_SINGLE);
@@ -68,9 +64,6 @@ void MX_TIM2_Init(void)
   LL_TIM_OC_DisablePreload(TIM2, LL_TIM_CHANNEL_CH1);
   LL_TIM_OC_DisablePreload(TIM2, LL_TIM_CHANNEL_CH2);
   LL_TIM_OC_DisablePreload(TIM2, LL_TIM_CHANNEL_CH3);
-  /* USER CODE BEGIN TIM2_Init 2 */
-
-  /* USER CODE END TIM2_Init 2 */
   LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOA);
     /**TIM2 GPIO Configuration
     PA1     ------> TIM2_CH2
@@ -105,11 +98,6 @@ void MX_TIM2_Init(void)
 /* TIM6 init function */
 void MX_TIM6_Init(void)
 {
-
-  /* USER CODE BEGIN TIM6_Init 0 */
-
-  /* USER CODE END TIM6_Init 0 */
-
   LL_TIM_InitTypeDef TIM_InitStruct = {0};
 
   /* Peripheral clock enable */
@@ -119,9 +107,6 @@ void MX_TIM6_Init(void)
   NVIC_SetPriority(TIM6_DAC_IRQn, 0);
   NVIC_EnableIRQ(TIM6_DAC_IRQn);
 
-  /* USER CODE BEGIN TIM6_Init 1 */
-
-  /* USER CODE END TIM6_Init 1 */
   TIM_InitStruct.Prescaler = 0;
   TIM_InitStruct.CounterMode = LL_TIM_COUNTERMODE_UP;
   TIM_InitStruct.Autoreload = 4799;
@@ -129,9 +114,6 @@ void MX_TIM6_Init(void)
   LL_TIM_DisableARRPreload(TIM6);
   LL_TIM_SetTriggerOutput(TIM6, LL_TIM_TRGO_RESET);
   LL_TIM_DisableMasterSlaveMode(TIM6);
-  /* USER CODE BEGIN TIM6_Init 2 */
-
-  /* USER CODE END TIM6_Init 2 */
 
 }
 

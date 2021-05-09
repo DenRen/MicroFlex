@@ -24,7 +24,8 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
-#include "usart.h"
+#include "StepMotorLib.h"
+#include  "StepMotorParams.h"
 
 /* USER CODE END Includes */
 
@@ -145,50 +146,23 @@ void SysTick_Handler(void)
 /******************************************************************************/
 
 /**
-  * @brief This function handles DMA1 channel 2 and 3 interrupts.
-  */
-void DMA1_Channel2_3_IRQHandler(void)
-{
-  /* USER CODE BEGIN DMA1_Channel2_3_IRQn 0 */
-
-  /* USER CODE END DMA1_Channel2_3_IRQn 0 */
-
-  /* USER CODE BEGIN DMA1_Channel2_3_IRQn 1 */
-
-  /* USER CODE END DMA1_Channel2_3_IRQn 1 */
-}
-
-/**
   * @brief This function handles TIM6 global and DAC underrun error interrupts.
   */
 void TIM6_DAC_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM6_DAC_IRQn 0 */
+  
+  if (LL_TIM_IsActiveFlag_UPDATE (SM_DRIVER_TIMER)) {
+    LL_TIM_ClearFlag_UPDATE (SM_DRIVER_TIMER);
 
+    SM_Step_Driver ();
+  }
+  
   /* USER CODE END TIM6_DAC_IRQn 0 */
 
   /* USER CODE BEGIN TIM6_DAC_IRQn 1 */
 
   /* USER CODE END TIM6_DAC_IRQn 1 */
-}
-
-/**
-  * @brief This function handles USART1 global interrupt / USART1 wake-up interrupt through EXTI line 25.
-  */
-void USART1_IRQHandler(void)
-{
-  /* USER CODE BEGIN USART1_IRQn 0 */
-	if (LL_USART_IsActiveFlag_RXNE (USART1)) {
-		// LL_USART_ClearFlag_RXNE (USART1); // Cleared with reading!
-
-		UART_RX (rx_buff, RX_BUFF_SIZE);
-		UART_RX_Handler (rx_buff, RX_BUFF_SIZE);
-		UART_TX (tx_buff, TX_BUFF_SIZE);
-	}
-  /* USER CODE END USART1_IRQn 0 */
-  /* USER CODE BEGIN USART1_IRQn 1 */
-
-  /* USER CODE END USART1_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */

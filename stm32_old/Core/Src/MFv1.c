@@ -8,9 +8,9 @@ void MFv1_Collibrate_Direction () {
 
     for (uint16_t i = 0; i < NUMBER_STEP_MOTORS; ++i) {
         AxisRotate (i, +angle_rotate, time_rotate * 1000);
-        LL_mDelay (2 * time_rotate);
+        LL_mDelay (20 * time_rotate);
 
         AxisRotate (i, -angle_rotate, time_rotate * 1000);
-        LL_mDelay (2 * time_rotate);
+        LL_mDelay (20 * time_rotate);
     }
 }

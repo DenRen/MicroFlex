@@ -19,13 +19,17 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "dma.h"
 #include "tim.h"
-#include "usart.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+
+#include "StepMotorLib.h"
+#include "StepMotorParams.h"
+#include "StepMotorDriver.h"
+#include "axis.h"
+#include "MFv1.h"
 
 /* USER CODE END Includes */
 
@@ -57,6 +61,31 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
+void ErrorActions () {
+  LL_GPIO_ResetOutputPin (LD3_GPIO_Port, LD3_Pin);
+  LL_GPIO_ResetOutputPin (LD4_GPIO_Port, LD4_Pin);
+
+  while (1) {  
+    LL_GPIO_SetOutputPin (LD3_GPIO_Port, LD3_Pin);
+    LL_GPIO_SetOutputPin (LD4_GPIO_Port, LD4_Pin);
+    LL_mDelay (200);
+
+    LL_GPIO_ResetOutputPin (LD3_GPIO_Port, LD3_Pin);
+    LL_GPIO_ResetOutputPin (LD4_GPIO_Port, LD4_Pin);
+    LL_mDelay (200);
+  }
+}
+
+void PrepareTimes () {
+  LL_TIM_DisableCounter (SM_DRIVER_TIMER);
+  LL_TIM_DisableCounter (TIM2);
+  
+  LL_TIM_ClearFlag_UPDATE (SM_DRIVER_TIMER);
+  LL_TIM_ClearFlag_UPDATE (TIM2);
+
+  LL_TIM_EnableIT_UPDATE (SM_DRIVER_TIMER);
+}
 
 /* USER CODE END 0 */
 
@@ -92,21 +121,39 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_DMA_Init();
   MX_TIM6_Init();
   MX_TIM2_Init();
-  MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  
+  if (InitializeDriverStepMotors () == -1)
+    ErrorActions ();
+
+  PrepareTimes ();
+  SM_Step_Driver_Enable ();
+  
+  SM_Driver_Enable_Step_Motors ();
+
+  MFv1_Collibrate_Direction ();
+
   while (1)
   {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+    
+    LL_GPIO_SetOutputPin (LD4_GPIO_Port, LD4_Pin);
+    LL_mDelay (1500);
+
+    //AxisRotate (0, +PI_HALF_URAD, 1000 * 1000);
+    //AxisRotate (1, +PI_HALF_URAD, 1000 * 1000);
+
+    LL_GPIO_ResetOutputPin (LD4_GPIO_Port, LD4_Pin);
+    LL_mDelay (1500);
   }
   /* USER CODE END 3 */
 }
@@ -148,7 +195,6 @@ void SystemClock_Config(void)
   }
   LL_Init1msTick(48000000);
   LL_SetSystemCoreClock(48000000);
-  LL_RCC_SetUSARTClockSource(LL_RCC_USART1_CLKSOURCE_PCLK1);
 }
 
 /* USER CODE BEGIN 4 */
