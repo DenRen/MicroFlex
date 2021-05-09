@@ -77,7 +77,7 @@ classdef mv1_params_t < handle
     methods (Access = private)
         function calc_theta (mv1_params)
             mv1_params.theta = acos (mv1_params.h_d / mv1_params.a);
-        end
+        end 
         
         function calc_h (prms)
             prms.h = sqrt (prms.a ^ 2 - prms.h_d ^ 2);
@@ -123,8 +123,8 @@ classdef mv1_params_t < handle
             L = calc_L (prms, phi);
             Z = calc_Z (prms, phi);
 
-            x_rel = -(D_rel + B_rel) / (2 * prms.r * Z);
-            z_rel = +(L + S) / (2 * Z);
+            x_rel = (D_rel - B_rel) / (2 * prms.r * Z);
+            z_rel = (L - S) / (2 * Z);
         end
         
         function ratio = get_ratio (prms, num_motor)
@@ -154,12 +154,29 @@ classdef mv1_params_t < handle
             [x_rel, z_rel] = calc_rel_point (prms, phi);
             
             R_phi0  = matrixRotate (phi0);
-            R_theta = matrixRotate (prms.theta);
+            R_theta = matrixRotate (prms.theta)
             
-            p1 = [-sin(phi0); cos(phi0)] * prms.h1;
+            p1 = [sin(-phi0); cos(phi0)] * prms.h1;
+            
+            R_theta * prms.H / prms.a - eye (2)
             
             point = p1 + (R_theta * prms.H / prms.a - eye (2))* R_phi0 * [x_rel; z_rel];
         end
+        
+%         function point = calc_end_point (prms, phi0, phi1, phi2)
+%             phi0 = -phi0;
+%             phi = phi0 + phi1;
+%             prms.calc_inner_params ();
+%             
+%             [x_rel, z_rel] = calc_rel_point (prms, phi);
+%             
+%             R_phi0  = matrixRotate (-phi0);
+%             R_theta = matrixRotate (prms.theta);
+%             
+%             p1 = [sin(phi0); cos(phi0)] * prms.h1;
+%             
+%             point = p1 + (R_theta * prms.H / prms.a - eye (2))* R_phi0 * [x_rel; z_rel];
+%         end
         
         function point = calc_end_point_rel_motors (prms, motor_phi0, motor_phi1, motor_phi2)
             phi0 = prms.motor_angle2kinematic_angle (motor_phi0);

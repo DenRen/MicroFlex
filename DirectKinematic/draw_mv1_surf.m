@@ -18,6 +18,10 @@ function draw_mv1_surf (params, surf_axes_x, surf_axes_z)
         end
     end
 
-    surf (surf_axes_x, phi0_arr, phi1_arr, points_x);
+    surf (surf_axes_x, phi0_arr, phi1_arr, points_x, 'FaceColor','g', 'FaceAlpha',0.5, 'EdgeColor','none');
+    hold (surf_axes_x);
+    surf (surf_axes_x, phi0_arr, phi1_arr, points_z, 'FaceColor','r', 'FaceAlpha',0.5, 'EdgeColor','none');
+    hold (surf_axes_x);
+    
     surf (surf_axes_z, phi0_arr, phi1_arr, points_z);
 end
