@@ -51,6 +51,8 @@ class planar_kinematic {
     bool _personal_verifier    () const;
 
     void calc_const_thetta ();
+    
+    matr_t calc_inv_W_pos (vect_t PHI, double delta_phi);
 
 public:
     planar_kinematic () = delete;
@@ -59,6 +61,9 @@ public:
 
     bool verifier () const;
     vect_t calc_position (double phi0, double phi1);
+    vect_t calc_angle    (double x, double z,
+                          double phi0_0 = -M_PI_4, double phi1_0 = M_PI_4,
+                          double eps = 1e-3);
     void dump (std::ostream& output = std::cout) const;
 };
 

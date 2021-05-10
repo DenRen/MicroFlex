@@ -221,6 +221,87 @@ vect_t planar_kinematic::calc_position (double phi0, double phi1) {
     return pos += p1;
 }
 
+// Calc W^(-1)
+matr_t planar_kinematic::calc_inv_W_pos (vect_t PHI, double delta_phi) {
+    assert (PHI.size () == 2);
+
+    const double phi0 = PHI (0), phi1 = PHI (1);
+    const double delta_half = delta_phi / 2;
+
+    const vect_t df_phi0 = calc_position (phi0 + delta_half, phi1) - calc_position (phi0 - delta_half, phi1);
+    const vect_t df_phi1 = calc_position (phi0, phi1 + delta_half) - calc_position (phi0, phi1 - delta_half);
+
+    matr_t W (2, 2);
+    W (0, 0) = +df_phi1 (1); W (0, 1) = -df_phi1 (0);
+    W (1, 0) = -df_phi0 (1); W (1, 1) = +df_phi0 (0);
+    
+    W /= delta_phi;
+
+    const double det = W (0, 0) * W (1, 1) - W (0, 1) * W (1, 0);
+
+    return W /= det;
+}
+
+double module_vect (vect_t v) {
+    const int size = v.size ();
+    double res = 0;
+    for (int i = 0; i < size; ++i)
+        res += pow (v[i], 2);
+    
+    return sqrt (res);
+}
+
+// Todo: you will need to add the correct handling of all possible cases
+static void vect_mod_2pi (vect_t& vect) {
+    const double vect_0 = vect (0);
+    const double vect_1 = vect (1);
+
+    std::cout << "input vect_phi: " << vect << std::endl;
+
+    vect (0) = vect_0 - trunc (vect_0 / (2 * M_PI)) * 2 * M_PI;
+    vect (1) = vect_1 - trunc (vect_1 / (2 * M_PI)) * 2 * M_PI;
+
+    if (vect (1) < vect (0) && vect (1) > 0)
+        throw std::runtime_error ("incorrect solve. This param we need to process."
+                                  "Please update the vect_mod_2pi function");
+
+    if (vect (1) < -M_PI)
+        vect (1) += 2 * M_PI;
+
+    if (vect (1) - vect (0) > 2 * M_PI)
+        vect (0) += 2 * M_PI;
+    
+}
+
+// In this kinematics, it is assumed that
+// -pi/2 < phi0 < phi1 < pi/2 
+// Start point is phi0 = -pi/4, phi1 = pi/4
+vect_t planar_kinematic::calc_angle (double x, double z, double phi0_0, double phi1_0, double eps) {
+    
+    vect_t PHI (2), X_res (2);
+    PHI[0] = phi0_0;
+    PHI[1] = phi1_0;
+    X_res (0) = x;
+    X_res (1) = z;
+
+    const double delta_phi = 1e-8;
+
+    while (true) {
+        vect_t F = calc_position (PHI[0], PHI[1]) - X_res;
+        matr_t W = calc_inv_W_pos (PHI, delta_phi);
+
+        vect_t dPHI = -prod (W, F);
+        PHI += 0.01 * dPHI;
+
+        if (module_vect (calc_position (PHI (0), PHI (1)) - X_res) < eps)
+            break;
+    }
+    
+    vect_mod_2pi (PHI);
+
+    return PHI;
+}
+
 void planar_kinematic::dump (std::ostream& output) const {
     output << "Dump planar_kinematic:" << std::endl
            << "\th_d: " << h_d << std::endl
