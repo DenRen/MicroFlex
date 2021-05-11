@@ -138,7 +138,16 @@ int main(void)
   
   SM_Driver_Enable_Step_Motors ();
 
-  MFv1_Collibrate_Direction ();
+  //MFv1_Collibrate_Direction ();
+
+  AxisRotate (0, -PI_HALF_URAD, 1000 * 1000);
+  AxisRotate (1, -PI_HALF_URAD, 1000 * 1000);
+  AxisRotate (2, -PI_HALF_URAD, 1000 * 1000);
+  LL_mDelay (2000);
+  AxisRotate (0, +PI_HALF_URAD, 1000 * 1000);
+  AxisRotate (1, +PI_HALF_URAD, 1000 * 1000);
+  AxisRotate (2, +PI_HALF_URAD, 1000 * 1000);
+  //LL_mDelay (20 * time_rotate);
 
   while (1)
   {

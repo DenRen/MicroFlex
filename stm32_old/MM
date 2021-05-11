@@ -2,8 +2,9 @@ BIN_PRJ = MicroFlex
 FOLDER_PRJ = build
 PROJECT = $(FOLDER_PRJ)/$(BIN_PRJ)
 
-flash: $(PROJECT).bin
-	st-flash write $(PROJECT).bin 0x08000000
+flash:
+	# st-flash write $(PROJECT).bin 0x08000000
+	st-flash write build/MicroFLex.bin 0x08000000
 
 flash_sleep: sleep.bin 
 	st-flash write $< 0x08000000

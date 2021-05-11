@@ -1,0 +1,1382 @@
+ARM GAS  /tmp/ccmDlXJ4.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 2
+   9              		.eabi_attribute 34, 0
+  10              		.eabi_attribute 18, 4
+  11              		.file	"StepMotorParams.c"
+  12              		.text
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.section	.text.InitializeDriverStepMotors,"ax",%progbits
+  16              		.align	1
+  17              		.p2align 2,,3
+  18              		.global	InitializeDriverStepMotors
+  19              		.syntax unified
+  20              		.code	16
+  21              		.thumb_func
+  22              		.fpu softvfp
+  24              	InitializeDriverStepMotors:
+  25              	.LFB529:
+  26              		.file 1 "Core/Src/StepMotorParams.c"
+   1:Core/Src/StepMotorParams.c **** #include "StepMotorParams.h"
+   2:Core/Src/StepMotorParams.c **** #include "StepMotorDriver.h"
+   3:Core/Src/StepMotorParams.c **** #include "main.h"
+   4:Core/Src/StepMotorParams.c **** 
+   5:Core/Src/StepMotorParams.c **** int InitializeDriverStepMotors () {
+  27              		.loc 1 5 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 72
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 20
+  34              		.cfi_offset 4, -20
+  35              		.cfi_offset 5, -16
+  36              		.cfi_offset 6, -12
+  37              		.cfi_offset 7, -8
+  38              		.cfi_offset 14, -4
+  39 0002 93B0     		sub	sp, sp, #76
+  40              	.LCFI1:
+  41              		.cfi_def_cfa_offset 96
+   6:Core/Src/StepMotorParams.c ****     SM_Driver_Reset_All ();
+  42              		.loc 1 6 0
+  43 0004 FFF7FEFF 		bl	SM_Driver_Reset_All
+  44              	.LVL0:
+   7:Core/Src/StepMotorParams.c **** 
+   8:Core/Src/StepMotorParams.c ****     step_motor_t step_motor_0 = {
+  45              		.loc 1 8 0
+  46 0008 224B     		ldr	r3, .L12
+  47 000a 6A46     		mov	r2, sp
+  48 000c 1900     		movs	r1, r3
+  49 000e 51C9     		ldmia	r1!, {r0, r4, r6}
+  50 0010 51C2     		stmia	r2!, {r0, r4, r6}
+ARM GAS  /tmp/ccmDlXJ4.s 			page 2
+
+
+  51 0012 51C9     		ldmia	r1!, {r0, r4, r6}
+  52 0014 51C2     		stmia	r2!, {r0, r4, r6}
+   9:Core/Src/StepMotorParams.c ****         .timer_channel = {
+  10:Core/Src/StepMotorParams.c ****             .TIMx        = SM_PULSE_TIMER,
+  11:Core/Src/StepMotorParams.c ****             .CHANNEL_CHx = SM_0_TIM_CHANNEL
+  12:Core/Src/StepMotorParams.c ****         },
+  13:Core/Src/StepMotorParams.c ****         .enable = {
+  14:Core/Src/StepMotorParams.c ****             .pin  = ENABLE_Pin,
+  15:Core/Src/StepMotorParams.c ****             .port = ENABLE_GPIO_Port
+  16:Core/Src/StepMotorParams.c ****         },
+  17:Core/Src/StepMotorParams.c ****         .dir = {
+  18:Core/Src/StepMotorParams.c ****             .pin  = DIR_0_Pin,
+  19:Core/Src/StepMotorParams.c ****             .port = DIR_0_GPIO_Port
+  20:Core/Src/StepMotorParams.c ****         }
+  21:Core/Src/StepMotorParams.c ****     };
+  22:Core/Src/StepMotorParams.c **** 
+  23:Core/Src/StepMotorParams.c ****     step_motor_t step_motor_1 = {
+  53              		.loc 1 23 0
+  54 0016 06AC     		add	r4, sp, #24
+  55 0018 1A00     		movs	r2, r3
+  56 001a 2100     		movs	r1, r4
+  57 001c 1832     		adds	r2, r2, #24
+  58 001e C1CA     		ldmia	r2!, {r0, r6, r7}
+  59 0020 C1C1     		stmia	r1!, {r0, r6, r7}
+  60 0022 C1CA     		ldmia	r2!, {r0, r6, r7}
+  61 0024 C1C1     		stmia	r1!, {r0, r6, r7}
+  24:Core/Src/StepMotorParams.c ****         .timer_channel = {
+  25:Core/Src/StepMotorParams.c ****             .TIMx        = SM_PULSE_TIMER,
+  26:Core/Src/StepMotorParams.c ****             .CHANNEL_CHx = SM_1_TIM_CHANNEL
+  27:Core/Src/StepMotorParams.c ****         },
+  28:Core/Src/StepMotorParams.c ****         .enable = {
+  29:Core/Src/StepMotorParams.c ****             .pin  = ENABLE_Pin,
+  30:Core/Src/StepMotorParams.c ****             .port = ENABLE_GPIO_Port
+  31:Core/Src/StepMotorParams.c ****         },
+  32:Core/Src/StepMotorParams.c ****         .dir = {
+  33:Core/Src/StepMotorParams.c ****             .pin  = DIR_1_Pin,
+  34:Core/Src/StepMotorParams.c ****             .port = DIR_1_GPIO_Port
+  35:Core/Src/StepMotorParams.c ****         }
+  36:Core/Src/StepMotorParams.c ****     };
+  37:Core/Src/StepMotorParams.c **** 
+  38:Core/Src/StepMotorParams.c ****     step_motor_t step_motor_2 = {
+  62              		.loc 1 38 0
+  63 0026 0CAE     		add	r6, sp, #48
+  64 0028 3200     		movs	r2, r6
+  65 002a 3033     		adds	r3, r3, #48
+  66 002c 83CB     		ldmia	r3!, {r0, r1, r7}
+  67 002e 83C2     		stmia	r2!, {r0, r1, r7}
+  68 0030 83CB     		ldmia	r3!, {r0, r1, r7}
+  69 0032 83C2     		stmia	r2!, {r0, r1, r7}
+  39:Core/Src/StepMotorParams.c ****         .timer_channel = {
+  40:Core/Src/StepMotorParams.c ****             .TIMx        = SM_PULSE_TIMER,
+  41:Core/Src/StepMotorParams.c ****             .CHANNEL_CHx = SM_2_TIM_CHANNEL
+  42:Core/Src/StepMotorParams.c ****         },
+  43:Core/Src/StepMotorParams.c ****         .enable = {
+  44:Core/Src/StepMotorParams.c ****             .pin  = ENABLE_Pin,
+  45:Core/Src/StepMotorParams.c ****             .port = ENABLE_GPIO_Port
+  46:Core/Src/StepMotorParams.c ****         },
+ARM GAS  /tmp/ccmDlXJ4.s 			page 3
+
+
+  47:Core/Src/StepMotorParams.c ****         .dir = {
+  48:Core/Src/StepMotorParams.c ****             .pin  = DIR_2_Pin,
+  49:Core/Src/StepMotorParams.c ****             .port = DIR_2_GPIO_Port 
+  50:Core/Src/StepMotorParams.c ****         }
+  51:Core/Src/StepMotorParams.c ****     };
+  52:Core/Src/StepMotorParams.c **** 
+  53:Core/Src/StepMotorParams.c ****     SM_Disable_TIM_Channel (step_motor_0.timer_channel);
+  70              		.loc 1 53 0
+  71 0034 0098     		ldr	r0, [sp]
+  72 0036 0199     		ldr	r1, [sp, #4]
+  73 0038 FFF7FEFF 		bl	SM_Disable_TIM_Channel
+  74              	.LVL1:
+  54:Core/Src/StepMotorParams.c ****     SM_Disable_TIM_Channel (step_motor_1.timer_channel);
+  75              		.loc 1 54 0
+  76 003c 0698     		ldr	r0, [sp, #24]
+  77 003e 6168     		ldr	r1, [r4, #4]
+  78 0040 FFF7FEFF 		bl	SM_Disable_TIM_Channel
+  79              	.LVL2:
+  55:Core/Src/StepMotorParams.c ****     SM_Disable_TIM_Channel (step_motor_1.timer_channel);
+  80              		.loc 1 55 0
+  81 0044 0698     		ldr	r0, [sp, #24]
+  82 0046 6168     		ldr	r1, [r4, #4]
+  83 0048 FFF7FEFF 		bl	SM_Disable_TIM_Channel
+  84              	.LVL3:
+  85              	.LBB4:
+  86              	.LBB5:
+  87              		.file 2 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h"
+   1:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+   2:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   ******************************************************************************
+   3:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @file    stm32f0xx_ll_tim.h
+   4:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @author  MCD Application Team
+   5:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @brief   Header file of TIM LL module.
+   6:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   ******************************************************************************
+   7:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @attention
+   8:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   *
+   9:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * <h2><center>&copy; Copyright (c) 2016 STMicroelectronics.
+  10:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * All rights reserved.</center></h2>
+  11:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   *
+  12:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * This software component is licensed by ST under BSD 3-Clause license,
+  13:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * the "License"; You may not use this file except in compliance with the
+  14:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * License. You may obtain a copy of the License at:
+  15:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   *                        opensource.org/licenses/BSD-3-Clause
+  16:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   *
+  17:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   ******************************************************************************
+  18:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+  19:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+  20:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /* Define to prevent recursive inclusion -------------------------------------*/
+  21:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #ifndef __STM32F0xx_LL_TIM_H
+  22:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define __STM32F0xx_LL_TIM_H
+  23:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+  24:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #ifdef __cplusplus
+  25:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** extern "C" {
+  26:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #endif
+  27:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+  28:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /* Includes ------------------------------------------------------------------*/
+  29:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #include "stm32f0xx.h"
+  30:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ARM GAS  /tmp/ccmDlXJ4.s 			page 4
+
+
+  31:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @addtogroup STM32F0xx_LL_Driver
+  32:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+  33:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+  34:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+  35:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #if defined (TIM1) || defined (TIM2) || defined (TIM3) || defined (TIM14) || defined (TIM15) || def
+  36:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+  37:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL TIM
+  38:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+  39:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+  40:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+  41:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /* Private types -------------------------------------------------------------*/
+  42:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /* Private variables ---------------------------------------------------------*/
+  43:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_Private_Variables TIM Private Variables
+  44:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+  45:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+  46:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** static const uint8_t OFFSET_TAB_CCMRx[] =
+  47:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** {
+  48:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   0x00U,   /* 0: TIMx_CH1  */
+  49:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   0x00U,   /* 1: TIMx_CH1N */
+  50:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   0x00U,   /* 2: TIMx_CH2  */
+  51:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   0x00U,   /* 3: TIMx_CH2N */
+  52:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   0x04U,   /* 4: TIMx_CH3  */
+  53:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   0x04U,   /* 5: TIMx_CH3N */
+  54:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   0x04U    /* 6: TIMx_CH4  */
+  55:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** };
+  56:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+  57:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** static const uint8_t SHIFT_TAB_OCxx[] =
+  58:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** {
+  59:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   0U,            /* 0: OC1M, OC1FE, OC1PE */
+  60:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   0U,            /* 1: - NA */
+  61:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   8U,            /* 2: OC2M, OC2FE, OC2PE */
+  62:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   0U,            /* 3: - NA */
+  63:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   0U,            /* 4: OC3M, OC3FE, OC3PE */
+  64:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   0U,            /* 5: - NA */
+  65:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   8U             /* 6: OC4M, OC4FE, OC4PE */
+  66:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** };
+  67:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+  68:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** static const uint8_t SHIFT_TAB_ICxx[] =
+  69:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** {
+  70:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   0U,            /* 0: CC1S, IC1PSC, IC1F */
+  71:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   0U,            /* 1: - NA */
+  72:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   8U,            /* 2: CC2S, IC2PSC, IC2F */
+  73:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   0U,            /* 3: - NA */
+  74:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   0U,            /* 4: CC3S, IC3PSC, IC3F */
+  75:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   0U,            /* 5: - NA */
+  76:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   8U             /* 6: CC4S, IC4PSC, IC4F */
+  77:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** };
+  78:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+  79:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** static const uint8_t SHIFT_TAB_CCxP[] =
+  80:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** {
+  81:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   0U,            /* 0: CC1P */
+  82:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   2U,            /* 1: CC1NP */
+  83:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   4U,            /* 2: CC2P */
+  84:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   6U,            /* 3: CC2NP */
+  85:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   8U,            /* 4: CC3P */
+  86:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   10U,           /* 5: CC3NP */
+  87:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   12U            /* 6: CC4P */
+ARM GAS  /tmp/ccmDlXJ4.s 			page 5
+
+
+  88:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** };
+  89:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+  90:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** static const uint8_t SHIFT_TAB_OISx[] =
+  91:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** {
+  92:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   0U,            /* 0: OIS1 */
+  93:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   1U,            /* 1: OIS1N */
+  94:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   2U,            /* 2: OIS2 */
+  95:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   3U,            /* 3: OIS2N */
+  96:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   4U,            /* 4: OIS3 */
+  97:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   5U,            /* 5: OIS3N */
+  98:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   6U             /* 6: OIS4 */
+  99:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** };
+ 100:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 101:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @}
+ 102:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 103:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 104:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /* Private constants ---------------------------------------------------------*/
+ 105:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_Private_Constants TIM Private Constants
+ 106:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+ 107:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 108:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 109:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 110:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define TIMx_OR_RMP_SHIFT  16U
+ 111:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define TIMx_OR_RMP_MASK   0x0000FFFFU
+ 112:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define TIM14_OR_RMP_MASK  (TIM14_OR_TI1_RMP << TIMx_OR_RMP_SHIFT)
+ 113:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 114:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /* Mask used to set the TDG[x:0] of the DTG bits of the TIMx_BDTR register */
+ 115:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define DT_DELAY_1 ((uint8_t)0x7F)
+ 116:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define DT_DELAY_2 ((uint8_t)0x3F)
+ 117:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define DT_DELAY_3 ((uint8_t)0x1F)
+ 118:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define DT_DELAY_4 ((uint8_t)0x1F)
+ 119:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 120:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /* Mask used to set the DTG[7:5] bits of the DTG bits of the TIMx_BDTR register */
+ 121:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define DT_RANGE_1 ((uint8_t)0x00)
+ 122:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define DT_RANGE_2 ((uint8_t)0x80)
+ 123:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define DT_RANGE_3 ((uint8_t)0xC0)
+ 124:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define DT_RANGE_4 ((uint8_t)0xE0)
+ 125:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 126:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 127:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 128:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @}
+ 129:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 130:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 131:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /* Private macros ------------------------------------------------------------*/
+ 132:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_Private_Macros TIM Private Macros
+ 133:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+ 134:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 135:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @brief  Convert channel id into channel index.
+ 136:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @param  __CHANNEL__ This parameter can be one of the following values:
+ 137:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   *         @arg @ref LL_TIM_CHANNEL_CH1
+ 138:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   *         @arg @ref LL_TIM_CHANNEL_CH1N
+ 139:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   *         @arg @ref LL_TIM_CHANNEL_CH2
+ 140:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   *         @arg @ref LL_TIM_CHANNEL_CH2N
+ 141:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   *         @arg @ref LL_TIM_CHANNEL_CH3
+ 142:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   *         @arg @ref LL_TIM_CHANNEL_CH3N
+ 143:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   *         @arg @ref LL_TIM_CHANNEL_CH4
+ 144:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @retval none
+ARM GAS  /tmp/ccmDlXJ4.s 			page 6
+
+
+ 145:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 146:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define TIM_GET_CHANNEL_INDEX( __CHANNEL__) \
+ 147:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   (((__CHANNEL__) == LL_TIM_CHANNEL_CH1) ? 0U :\
+ 148:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****    ((__CHANNEL__) == LL_TIM_CHANNEL_CH1N) ? 1U :\
+ 149:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****    ((__CHANNEL__) == LL_TIM_CHANNEL_CH2) ? 2U :\
+ 150:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****    ((__CHANNEL__) == LL_TIM_CHANNEL_CH2N) ? 3U :\
+ 151:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****    ((__CHANNEL__) == LL_TIM_CHANNEL_CH3) ? 4U :\
+ 152:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****    ((__CHANNEL__) == LL_TIM_CHANNEL_CH3N) ? 5U : 6U)
+ 153:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 154:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @brief  Calculate the deadtime sampling period(in ps).
+ 155:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @param  __TIMCLK__ timer input clock frequency (in Hz).
+ 156:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @param  __CKD__ This parameter can be one of the following values:
+ 157:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   *         @arg @ref LL_TIM_CLOCKDIVISION_DIV1
+ 158:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   *         @arg @ref LL_TIM_CLOCKDIVISION_DIV2
+ 159:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   *         @arg @ref LL_TIM_CLOCKDIVISION_DIV4
+ 160:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @retval none
+ 161:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 162:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define TIM_CALC_DTS(__TIMCLK__, __CKD__)                                                        \
+ 163:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   (((__CKD__) == LL_TIM_CLOCKDIVISION_DIV1) ? ((uint64_t)1000000000000U/(__TIMCLK__))         : \
+ 164:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****    ((__CKD__) == LL_TIM_CLOCKDIVISION_DIV2) ? ((uint64_t)1000000000000U/((__TIMCLK__) >> 1U)) : \
+ 165:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****    ((uint64_t)1000000000000U/((__TIMCLK__) >> 2U)))
+ 166:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 167:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @}
+ 168:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 169:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 170:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 171:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /* Exported types ------------------------------------------------------------*/
+ 172:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #if defined(USE_FULL_LL_DRIVER)
+ 173:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_ES_INIT TIM Exported Init structure
+ 174:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+ 175:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 176:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 177:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 178:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @brief  TIM Time Base configuration structure definition.
+ 179:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 180:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** typedef struct
+ 181:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** {
+ 182:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   uint16_t Prescaler;         /*!< Specifies the prescaler value used to divide the TIM clock.
+ 183:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                    This parameter can be a number between Min_Data=0x0000 and Max_D
+ 184:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 185:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                    This feature can be modified afterwards using unitary function @
+ 186:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 187:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   uint32_t CounterMode;       /*!< Specifies the counter mode.
+ 188:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                    This parameter can be a value of @ref TIM_LL_EC_COUNTERMODE.
+ 189:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 190:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                    This feature can be modified afterwards using unitary function @
+ 191:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 192:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   uint32_t Autoreload;        /*!< Specifies the auto reload value to be loaded into the active
+ 193:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                    Auto-Reload Register at the next update event.
+ 194:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                    This parameter must be a number between Min_Data=0x0000 and Max_
+ 195:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                    Some timer instances may support 32 bits counters. In that case 
+ 196:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 197:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                    This feature can be modified afterwards using unitary function @
+ 198:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 199:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   uint32_t ClockDivision;     /*!< Specifies the clock division.
+ 200:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                    This parameter can be a value of @ref TIM_LL_EC_CLOCKDIVISION.
+ 201:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ARM GAS  /tmp/ccmDlXJ4.s 			page 7
+
+
+ 202:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                    This feature can be modified afterwards using unitary function @
+ 203:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 204:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   uint32_t RepetitionCounter;  /*!< Specifies the repetition counter value. Each time the RCR downc
+ 205:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                    reaches zero, an update event is generated and counting restarts
+ 206:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                    from the RCR value (N).
+ 207:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                    This means in PWM mode that (N+1) corresponds to:
+ 208:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                       - the number of PWM periods in edge-aligned mode
+ 209:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                       - the number of half PWM period in center-aligned mode
+ 210:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                    GP timers: this parameter must be a number between Min_Data = 0x
+ 211:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                    Advanced timers: this parameter must be a number between Min_Dat
+ 212:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 213:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                    This feature can be modified afterwards using unitary function @
+ 214:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** } LL_TIM_InitTypeDef;
+ 215:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 216:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 217:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @brief  TIM Output Compare configuration structure definition.
+ 218:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 219:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** typedef struct
+ 220:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** {
+ 221:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   uint32_t OCMode;        /*!< Specifies the output mode.
+ 222:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                This parameter can be a value of @ref TIM_LL_EC_OCMODE.
+ 223:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 224:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                This feature can be modified afterwards using unitary function @ref 
+ 225:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 226:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   uint32_t OCState;       /*!< Specifies the TIM Output Compare state.
+ 227:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                This parameter can be a value of @ref TIM_LL_EC_OCSTATE.
+ 228:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 229:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                This feature can be modified afterwards using unitary functions @ref
+ 230:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 231:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   uint32_t OCNState;      /*!< Specifies the TIM complementary Output Compare state.
+ 232:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                This parameter can be a value of @ref TIM_LL_EC_OCSTATE.
+ 233:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 234:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                This feature can be modified afterwards using unitary functions @ref
+ 235:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 236:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   uint32_t CompareValue;  /*!< Specifies the Compare value to be loaded into the Capture Compare Re
+ 237:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                This parameter can be a number between Min_Data=0x0000 and Max_Data=
+ 238:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 239:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                This feature can be modified afterwards using unitary function LL_TI
+ 240:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 241:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   uint32_t OCPolarity;    /*!< Specifies the output polarity.
+ 242:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                This parameter can be a value of @ref TIM_LL_EC_OCPOLARITY.
+ 243:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 244:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                This feature can be modified afterwards using unitary function @ref 
+ 245:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 246:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   uint32_t OCNPolarity;   /*!< Specifies the complementary output polarity.
+ 247:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                This parameter can be a value of @ref TIM_LL_EC_OCPOLARITY.
+ 248:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 249:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                This feature can be modified afterwards using unitary function @ref 
+ 250:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 251:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 252:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   uint32_t OCIdleState;   /*!< Specifies the TIM Output Compare pin state during Idle state.
+ 253:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                This parameter can be a value of @ref TIM_LL_EC_OCIDLESTATE.
+ 254:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 255:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                This feature can be modified afterwards using unitary function @ref 
+ 256:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 257:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   uint32_t OCNIdleState;  /*!< Specifies the TIM Output Compare pin state during Idle state.
+ 258:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                This parameter can be a value of @ref TIM_LL_EC_OCIDLESTATE.
+ARM GAS  /tmp/ccmDlXJ4.s 			page 8
+
+
+ 259:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 260:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                This feature can be modified afterwards using unitary function @ref 
+ 261:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** } LL_TIM_OC_InitTypeDef;
+ 262:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 263:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 264:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @brief  TIM Input Capture configuration structure definition.
+ 265:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 266:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 267:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** typedef struct
+ 268:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** {
+ 269:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 270:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   uint32_t ICPolarity;    /*!< Specifies the active edge of the input signal.
+ 271:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                This parameter can be a value of @ref TIM_LL_EC_IC_POLARITY.
+ 272:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 273:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                This feature can be modified afterwards using unitary function @ref 
+ 274:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 275:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   uint32_t ICActiveInput; /*!< Specifies the input.
+ 276:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                This parameter can be a value of @ref TIM_LL_EC_ACTIVEINPUT.
+ 277:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 278:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                This feature can be modified afterwards using unitary function @ref 
+ 279:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 280:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   uint32_t ICPrescaler;   /*!< Specifies the Input Capture Prescaler.
+ 281:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                This parameter can be a value of @ref TIM_LL_EC_ICPSC.
+ 282:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 283:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                This feature can be modified afterwards using unitary function @ref 
+ 284:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 285:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   uint32_t ICFilter;      /*!< Specifies the input capture filter.
+ 286:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                This parameter can be a value of @ref TIM_LL_EC_IC_FILTER.
+ 287:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 288:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                This feature can be modified afterwards using unitary function @ref 
+ 289:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** } LL_TIM_IC_InitTypeDef;
+ 290:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 291:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 292:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 293:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @brief  TIM Encoder interface configuration structure definition.
+ 294:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 295:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** typedef struct
+ 296:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** {
+ 297:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   uint32_t EncoderMode;     /*!< Specifies the encoder resolution (x2 or x4).
+ 298:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                  This parameter can be a value of @ref TIM_LL_EC_ENCODERMODE.
+ 299:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 300:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                  This feature can be modified afterwards using unitary function @re
+ 301:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 302:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   uint32_t IC1Polarity;     /*!< Specifies the active edge of TI1 input.
+ 303:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                  This parameter can be a value of @ref TIM_LL_EC_IC_POLARITY.
+ 304:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 305:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                  This feature can be modified afterwards using unitary function @re
+ 306:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 307:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   uint32_t IC1ActiveInput;  /*!< Specifies the TI1 input source
+ 308:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                  This parameter can be a value of @ref TIM_LL_EC_ACTIVEINPUT.
+ 309:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 310:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                  This feature can be modified afterwards using unitary function @re
+ 311:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 312:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   uint32_t IC1Prescaler;    /*!< Specifies the TI1 input prescaler value.
+ 313:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                  This parameter can be a value of @ref TIM_LL_EC_ICPSC.
+ 314:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 315:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                  This feature can be modified afterwards using unitary function @re
+ARM GAS  /tmp/ccmDlXJ4.s 			page 9
+
+
+ 316:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 317:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   uint32_t IC1Filter;       /*!< Specifies the TI1 input filter.
+ 318:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                  This parameter can be a value of @ref TIM_LL_EC_IC_FILTER.
+ 319:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 320:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                  This feature can be modified afterwards using unitary function @re
+ 321:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 322:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   uint32_t IC2Polarity;      /*!< Specifies the active edge of TI2 input.
+ 323:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                  This parameter can be a value of @ref TIM_LL_EC_IC_POLARITY.
+ 324:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 325:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                  This feature can be modified afterwards using unitary function @re
+ 326:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 327:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   uint32_t IC2ActiveInput;  /*!< Specifies the TI2 input source
+ 328:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                  This parameter can be a value of @ref TIM_LL_EC_ACTIVEINPUT.
+ 329:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 330:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                  This feature can be modified afterwards using unitary function @re
+ 331:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 332:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   uint32_t IC2Prescaler;    /*!< Specifies the TI2 input prescaler value.
+ 333:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                  This parameter can be a value of @ref TIM_LL_EC_ICPSC.
+ 334:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 335:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                  This feature can be modified afterwards using unitary function @re
+ 336:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 337:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   uint32_t IC2Filter;       /*!< Specifies the TI2 input filter.
+ 338:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                  This parameter can be a value of @ref TIM_LL_EC_IC_FILTER.
+ 339:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 340:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                  This feature can be modified afterwards using unitary function @re
+ 341:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 342:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** } LL_TIM_ENCODER_InitTypeDef;
+ 343:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 344:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 345:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @brief  TIM Hall sensor interface configuration structure definition.
+ 346:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 347:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** typedef struct
+ 348:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** {
+ 349:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 350:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   uint32_t IC1Polarity;        /*!< Specifies the active edge of TI1 input.
+ 351:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                     This parameter can be a value of @ref TIM_LL_EC_IC_POLARITY.
+ 352:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 353:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                     This feature can be modified afterwards using unitary function 
+ 354:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 355:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   uint32_t IC1Prescaler;       /*!< Specifies the TI1 input prescaler value.
+ 356:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                     Prescaler must be set to get a maximum counter period longer th
+ 357:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                     time interval between 2 consecutive changes on the Hall inputs.
+ 358:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                     This parameter can be a value of @ref TIM_LL_EC_ICPSC.
+ 359:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 360:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                     This feature can be modified afterwards using unitary function 
+ 361:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 362:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   uint32_t IC1Filter;          /*!< Specifies the TI1 input filter.
+ 363:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                     This parameter can be a value of @ref TIM_LL_EC_IC_FILTER.
+ 364:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 365:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                     This feature can be modified afterwards using unitary function 
+ 366:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 367:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   uint32_t CommutationDelay;   /*!< Specifies the compare value to be loaded into the Capture Compa
+ 368:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                     A positive pulse (TRGO event) is generated with a programmable 
+ 369:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                     a change occurs on the Hall inputs.
+ 370:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                     This parameter can be a number between Min_Data = 0x0000 and Ma
+ 371:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 372:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                     This feature can be modified afterwards using unitary function 
+ARM GAS  /tmp/ccmDlXJ4.s 			page 10
+
+
+ 373:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** } LL_TIM_HALLSENSOR_InitTypeDef;
+ 374:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 375:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 376:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @brief  BDTR (Break and Dead Time) structure definition
+ 377:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 378:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** typedef struct
+ 379:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** {
+ 380:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   uint32_t OSSRState;            /*!< Specifies the Off-State selection used in Run mode.
+ 381:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                       This parameter can be a value of @ref TIM_LL_EC_OSSR
+ 382:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 383:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                       This feature can be modified afterwards using unitary functio
+ 384:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 385:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                       @note This bit-field cannot be modified as long as LOCK level
+ 386:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 387:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   uint32_t OSSIState;            /*!< Specifies the Off-State used in Idle state.
+ 388:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                       This parameter can be a value of @ref TIM_LL_EC_OSSI
+ 389:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 390:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                       This feature can be modified afterwards using unitary functio
+ 391:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 392:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                       @note This bit-field cannot be modified as long as LOCK level
+ 393:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 394:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   uint32_t LockLevel;            /*!< Specifies the LOCK level parameters.
+ 395:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                       This parameter can be a value of @ref TIM_LL_EC_LOCKLEVEL
+ 396:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 397:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                       @note The LOCK bits can be written only once after the reset.
+ 398:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                             has been written, their content is frozen until the nex
+ 399:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 400:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   uint8_t DeadTime;              /*!< Specifies the delay time between the switching-off and the
+ 401:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                       switching-on of the outputs.
+ 402:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                       This parameter can be a number between Min_Data = 0x00 and Ma
+ 403:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 404:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                       This feature can be modified afterwards using unitary functio
+ 405:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 406:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                       @note This bit-field can not be modified as long as LOCK leve
+ 407:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 408:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   uint16_t BreakState;           /*!< Specifies whether the TIM Break input is enabled or not.
+ 409:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                       This parameter can be a value of @ref TIM_LL_EC_BREAK_ENABLE
+ 410:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 411:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                       This feature can be modified afterwards using unitary functio
+ 412:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 413:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                       @note This bit-field can not be modified as long as LOCK leve
+ 414:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 415:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   uint32_t BreakPolarity;        /*!< Specifies the TIM Break Input pin polarity.
+ 416:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                       This parameter can be a value of @ref TIM_LL_EC_BREAK_POLARIT
+ 417:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 418:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                       This feature can be modified afterwards using unitary functio
+ 419:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 420:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                       @note This bit-field can not be modified as long as LOCK leve
+ 421:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 422:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   uint32_t AutomaticOutput;      /*!< Specifies whether the TIM Automatic Output feature is enabled
+ 423:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                       This parameter can be a value of @ref TIM_LL_EC_AUTOMATICOUTP
+ 424:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 425:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                       This feature can be modified afterwards using unitary functio
+ 426:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 427:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****                                       @note This bit-field can not be modified as long as LOCK leve
+ 428:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** } LL_TIM_BDTR_InitTypeDef;
+ 429:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ARM GAS  /tmp/ccmDlXJ4.s 			page 11
+
+
+ 430:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 431:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @}
+ 432:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 433:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #endif /* USE_FULL_LL_DRIVER */
+ 434:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 435:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /* Exported constants --------------------------------------------------------*/
+ 436:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_Exported_Constants TIM Exported Constants
+ 437:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+ 438:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 439:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 440:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_EC_GET_FLAG Get Flags Defines
+ 441:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @brief    Flags defines which can be used with LL_TIM_ReadReg function.
+ 442:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+ 443:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 444:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_SR_UIF                          TIM_SR_UIF           /*!< Update interrupt flag */
+ 445:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_SR_CC1IF                        TIM_SR_CC1IF         /*!< Capture/compare 1 interrup
+ 446:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_SR_CC2IF                        TIM_SR_CC2IF         /*!< Capture/compare 2 interrup
+ 447:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_SR_CC3IF                        TIM_SR_CC3IF         /*!< Capture/compare 3 interrup
+ 448:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_SR_CC4IF                        TIM_SR_CC4IF         /*!< Capture/compare 4 interrup
+ 449:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_SR_COMIF                        TIM_SR_COMIF         /*!< COM interrupt flag */
+ 450:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_SR_TIF                          TIM_SR_TIF           /*!< Trigger interrupt flag */
+ 451:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_SR_BIF                          TIM_SR_BIF           /*!< Break interrupt flag */
+ 452:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_SR_CC1OF                        TIM_SR_CC1OF         /*!< Capture/Compare 1 overcapt
+ 453:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_SR_CC2OF                        TIM_SR_CC2OF         /*!< Capture/Compare 2 overcapt
+ 454:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_SR_CC3OF                        TIM_SR_CC3OF         /*!< Capture/Compare 3 overcapt
+ 455:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_SR_CC4OF                        TIM_SR_CC4OF         /*!< Capture/Compare 4 overcapt
+ 456:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 457:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @}
+ 458:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 459:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 460:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #if defined(USE_FULL_LL_DRIVER)
+ 461:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_EC_BREAK_ENABLE Break Enable
+ 462:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+ 463:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 464:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_BREAK_DISABLE            0x00000000U             /*!< Break function disabled */
+ 465:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_BREAK_ENABLE             TIM_BDTR_BKE            /*!< Break function enabled */
+ 466:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 467:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @}
+ 468:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 469:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 470:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_EC_AUTOMATICOUTPUT_ENABLE Automatic output enable
+ 471:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+ 472:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 473:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_AUTOMATICOUTPUT_DISABLE         0x00000000U             /*!< MOE can be set only by 
+ 474:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_AUTOMATICOUTPUT_ENABLE          TIM_BDTR_AOE            /*!< MOE can be set by softw
+ 475:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 476:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @}
+ 477:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 478:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #endif /* USE_FULL_LL_DRIVER */
+ 479:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 480:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_EC_IT IT Defines
+ 481:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @brief    IT defines which can be used with LL_TIM_ReadReg and  LL_TIM_WriteReg functions.
+ 482:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+ 483:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 484:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_DIER_UIE                        TIM_DIER_UIE         /*!< Update interrupt enable */
+ 485:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_DIER_CC1IE                      TIM_DIER_CC1IE       /*!< Capture/compare 1 interrup
+ 486:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_DIER_CC2IE                      TIM_DIER_CC2IE       /*!< Capture/compare 2 interrup
+ARM GAS  /tmp/ccmDlXJ4.s 			page 12
+
+
+ 487:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_DIER_CC3IE                      TIM_DIER_CC3IE       /*!< Capture/compare 3 interrup
+ 488:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_DIER_CC4IE                      TIM_DIER_CC4IE       /*!< Capture/compare 4 interrup
+ 489:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_DIER_COMIE                      TIM_DIER_COMIE       /*!< COM interrupt enable */
+ 490:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_DIER_TIE                        TIM_DIER_TIE         /*!< Trigger interrupt enable *
+ 491:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_DIER_BIE                        TIM_DIER_BIE         /*!< Break interrupt enable */
+ 492:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 493:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @}
+ 494:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 495:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 496:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_EC_UPDATESOURCE Update Source
+ 497:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+ 498:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 499:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_UPDATESOURCE_REGULAR            0x00000000U          /*!< Counter overflow/underflow
+ 500:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_UPDATESOURCE_COUNTER            TIM_CR1_URS          /*!< Only counter overflow/unde
+ 501:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 502:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @}
+ 503:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 504:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 505:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_EC_ONEPULSEMODE One Pulse Mode
+ 506:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+ 507:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 508:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_ONEPULSEMODE_SINGLE             TIM_CR1_OPM          /*!< Counter is not stopped at 
+ 509:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_ONEPULSEMODE_REPETITIVE         0x00000000U          /*!< Counter stops counting at 
+ 510:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 511:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @}
+ 512:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 513:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 514:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_EC_COUNTERMODE Counter Mode
+ 515:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+ 516:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 517:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_COUNTERMODE_UP                  0x00000000U          /*!<Counter used as upcounter *
+ 518:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_COUNTERMODE_DOWN                TIM_CR1_DIR          /*!< Counter used as downcounte
+ 519:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_COUNTERMODE_CENTER_DOWN         TIM_CR1_CMS_0        /*!< The counter counts up and 
+ 520:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_COUNTERMODE_CENTER_UP           TIM_CR1_CMS_1        /*!<The counter counts up and d
+ 521:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_COUNTERMODE_CENTER_UP_DOWN      TIM_CR1_CMS          /*!< The counter counts up and 
+ 522:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 523:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @}
+ 524:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 525:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 526:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_EC_CLOCKDIVISION Clock Division
+ 527:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+ 528:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 529:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_CLOCKDIVISION_DIV1              0x00000000U          /*!< tDTS=tCK_INT */
+ 530:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_CLOCKDIVISION_DIV2              TIM_CR1_CKD_0        /*!< tDTS=2*tCK_INT */
+ 531:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_CLOCKDIVISION_DIV4              TIM_CR1_CKD_1        /*!< tDTS=4*tCK_INT */
+ 532:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 533:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @}
+ 534:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 535:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 536:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_EC_COUNTERDIRECTION Counter Direction
+ 537:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+ 538:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 539:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_COUNTERDIRECTION_UP             0x00000000U          /*!< Timer counter counts up */
+ 540:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_COUNTERDIRECTION_DOWN           TIM_CR1_DIR          /*!< Timer counter counts down 
+ 541:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 542:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @}
+ 543:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ARM GAS  /tmp/ccmDlXJ4.s 			page 13
+
+
+ 544:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 545:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_EC_CCUPDATESOURCE Capture Compare  Update Source
+ 546:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+ 547:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 548:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_CCUPDATESOURCE_COMG_ONLY        0x00000000U          /*!< Capture/compare control bi
+ 549:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_CCUPDATESOURCE_COMG_AND_TRGI    TIM_CR2_CCUS         /*!< Capture/compare control bi
+ 550:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 551:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @}
+ 552:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 553:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 554:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_EC_CCDMAREQUEST Capture Compare DMA Request
+ 555:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+ 556:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 557:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_CCDMAREQUEST_CC                 0x00000000U          /*!< CCx DMA request sent when 
+ 558:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_CCDMAREQUEST_UPDATE             TIM_CR2_CCDS         /*!< CCx DMA requests sent when
+ 559:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 560:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @}
+ 561:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 562:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 563:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_EC_LOCKLEVEL Lock Level
+ 564:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+ 565:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 566:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_LOCKLEVEL_OFF                   0x00000000U          /*!< LOCK OFF - No bit is write
+ 567:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_LOCKLEVEL_1                     TIM_BDTR_LOCK_0      /*!< LOCK Level 1 */
+ 568:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_LOCKLEVEL_2                     TIM_BDTR_LOCK_1      /*!< LOCK Level 2 */
+ 569:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_LOCKLEVEL_3                     TIM_BDTR_LOCK        /*!< LOCK Level 3 */
+ 570:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 571:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @}
+ 572:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 573:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 574:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_EC_CHANNEL Channel
+ 575:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+ 576:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 577:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_CHANNEL_CH1                     TIM_CCER_CC1E     /*!< Timer input/output channel 1 
+ 578:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_CHANNEL_CH1N                    TIM_CCER_CC1NE    /*!< Timer complementary output ch
+ 579:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_CHANNEL_CH2                     TIM_CCER_CC2E     /*!< Timer input/output channel 2 
+ 580:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_CHANNEL_CH2N                    TIM_CCER_CC2NE    /*!< Timer complementary output ch
+ 581:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_CHANNEL_CH3                     TIM_CCER_CC3E     /*!< Timer input/output channel 3 
+ 582:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_CHANNEL_CH3N                    TIM_CCER_CC3NE    /*!< Timer complementary output ch
+ 583:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_CHANNEL_CH4                     TIM_CCER_CC4E     /*!< Timer input/output channel 4 
+ 584:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 585:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @}
+ 586:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 587:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 588:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #if defined(USE_FULL_LL_DRIVER)
+ 589:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_EC_OCSTATE Output Configuration State
+ 590:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+ 591:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 592:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_OCSTATE_DISABLE                 0x00000000U             /*!< OCx is not active */
+ 593:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_OCSTATE_ENABLE                  TIM_CCER_CC1E           /*!< OCx signal is output on
+ 594:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 595:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @}
+ 596:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 597:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #endif /* USE_FULL_LL_DRIVER */
+ 598:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 599:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_EC_OCMODE Output Configuration Mode
+ 600:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+ARM GAS  /tmp/ccmDlXJ4.s 			page 14
+
+
+ 601:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 602:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_OCMODE_FROZEN                   0x00000000U                                         
+ 603:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_OCMODE_ACTIVE                   TIM_CCMR1_OC1M_0                                    
+ 604:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_OCMODE_INACTIVE                 TIM_CCMR1_OC1M_1                                    
+ 605:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_OCMODE_TOGGLE                   (TIM_CCMR1_OC1M_1 | TIM_CCMR1_OC1M_0)               
+ 606:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_OCMODE_FORCED_INACTIVE          TIM_CCMR1_OC1M_2                                    
+ 607:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_OCMODE_FORCED_ACTIVE            (TIM_CCMR1_OC1M_2 | TIM_CCMR1_OC1M_0)               
+ 608:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_OCMODE_PWM1                     (TIM_CCMR1_OC1M_2 | TIM_CCMR1_OC1M_1)               
+ 609:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_OCMODE_PWM2                     (TIM_CCMR1_OC1M_2 | TIM_CCMR1_OC1M_1 | TIM_CCMR1_OC1
+ 610:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 611:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @}
+ 612:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 613:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 614:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_EC_OCPOLARITY Output Configuration Polarity
+ 615:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+ 616:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 617:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_OCPOLARITY_HIGH                 0x00000000U                 /*!< OCxactive high*/
+ 618:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_OCPOLARITY_LOW                  TIM_CCER_CC1P               /*!< OCxactive low*/
+ 619:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 620:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @}
+ 621:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 622:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 623:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_EC_OCIDLESTATE Output Configuration Idle State
+ 624:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+ 625:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 626:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_OCIDLESTATE_LOW                 0x00000000U             /*!<OCx=0 (after a dead-time
+ 627:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_OCIDLESTATE_HIGH                TIM_CR2_OIS1            /*!<OCx=1 (after a dead-time
+ 628:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 629:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @}
+ 630:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 631:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 632:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 633:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_EC_ACTIVEINPUT Active Input Selection
+ 634:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+ 635:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 636:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_ACTIVEINPUT_DIRECTTI            (TIM_CCMR1_CC1S_0 << 16U) /*!< ICx is mapped on TIx 
+ 637:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_ACTIVEINPUT_INDIRECTTI          (TIM_CCMR1_CC1S_1 << 16U) /*!< ICx is mapped on TIy 
+ 638:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_ACTIVEINPUT_TRC                 (TIM_CCMR1_CC1S << 16U)   /*!< ICx is mapped on TRC 
+ 639:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 640:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @}
+ 641:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 642:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 643:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_EC_ICPSC Input Configuration Prescaler
+ 644:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+ 645:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 646:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_ICPSC_DIV1                      0x00000000U                    /*!< No prescaler, ca
+ 647:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_ICPSC_DIV2                      (TIM_CCMR1_IC1PSC_0 << 16U)    /*!< Capture is done 
+ 648:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_ICPSC_DIV4                      (TIM_CCMR1_IC1PSC_1 << 16U)    /*!< Capture is done 
+ 649:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_ICPSC_DIV8                      (TIM_CCMR1_IC1PSC << 16U)      /*!< Capture is done 
+ 650:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 651:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @}
+ 652:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 653:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 654:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_EC_IC_FILTER Input Configuration Filter
+ 655:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+ 656:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 657:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_IC_FILTER_FDIV1                 0x00000000U                                         
+ARM GAS  /tmp/ccmDlXJ4.s 			page 15
+
+
+ 658:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_IC_FILTER_FDIV1_N2              (TIM_CCMR1_IC1F_0 << 16U)                           
+ 659:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_IC_FILTER_FDIV1_N4              (TIM_CCMR1_IC1F_1 << 16U)                           
+ 660:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_IC_FILTER_FDIV1_N8              ((TIM_CCMR1_IC1F_1 | TIM_CCMR1_IC1F_0) << 16U)      
+ 661:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_IC_FILTER_FDIV2_N6              (TIM_CCMR1_IC1F_2 << 16U)                           
+ 662:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_IC_FILTER_FDIV2_N8              ((TIM_CCMR1_IC1F_2 | TIM_CCMR1_IC1F_0) << 16U)      
+ 663:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_IC_FILTER_FDIV4_N6              ((TIM_CCMR1_IC1F_2 | TIM_CCMR1_IC1F_1) << 16U)      
+ 664:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_IC_FILTER_FDIV4_N8              ((TIM_CCMR1_IC1F_2 | TIM_CCMR1_IC1F_1 | TIM_CCMR1_IC
+ 665:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_IC_FILTER_FDIV8_N6              (TIM_CCMR1_IC1F_3 << 16U)                           
+ 666:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_IC_FILTER_FDIV8_N8              ((TIM_CCMR1_IC1F_3 | TIM_CCMR1_IC1F_0) << 16U)      
+ 667:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_IC_FILTER_FDIV16_N5             ((TIM_CCMR1_IC1F_3 | TIM_CCMR1_IC1F_1) << 16U)      
+ 668:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_IC_FILTER_FDIV16_N6             ((TIM_CCMR1_IC1F_3 | TIM_CCMR1_IC1F_1 | TIM_CCMR1_IC
+ 669:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_IC_FILTER_FDIV16_N8             ((TIM_CCMR1_IC1F_3 | TIM_CCMR1_IC1F_2) << 16U)      
+ 670:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_IC_FILTER_FDIV32_N5             ((TIM_CCMR1_IC1F_3 | TIM_CCMR1_IC1F_2 | TIM_CCMR1_IC
+ 671:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_IC_FILTER_FDIV32_N6             ((TIM_CCMR1_IC1F_3 | TIM_CCMR1_IC1F_2 | TIM_CCMR1_IC
+ 672:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_IC_FILTER_FDIV32_N8             (TIM_CCMR1_IC1F << 16U)                             
+ 673:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 674:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @}
+ 675:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 676:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 677:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_EC_IC_POLARITY Input Configuration Polarity
+ 678:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+ 679:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 680:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_IC_POLARITY_RISING              0x00000000U                      /*!< The circuit is
+ 681:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_IC_POLARITY_FALLING             TIM_CCER_CC1P                    /*!< The circuit is
+ 682:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_IC_POLARITY_BOTHEDGE            (TIM_CCER_CC1P | TIM_CCER_CC1NP) /*!< The circuit is
+ 683:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 684:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @}
+ 685:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 686:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 687:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_EC_CLOCKSOURCE Clock Source
+ 688:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+ 689:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 690:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_CLOCKSOURCE_INTERNAL            0x00000000U                                         
+ 691:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_CLOCKSOURCE_EXT_MODE1           (TIM_SMCR_SMS_2 | TIM_SMCR_SMS_1 | TIM_SMCR_SMS_0)  
+ 692:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_CLOCKSOURCE_EXT_MODE2           TIM_SMCR_ECE                                        
+ 693:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 694:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @}
+ 695:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 696:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 697:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_EC_ENCODERMODE Encoder Mode
+ 698:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+ 699:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 700:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_ENCODERMODE_X2_TI1                     TIM_SMCR_SMS_0                               
+ 701:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_ENCODERMODE_X2_TI2                     TIM_SMCR_SMS_1                               
+ 702:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_ENCODERMODE_X4_TI12                   (TIM_SMCR_SMS_1 | TIM_SMCR_SMS_0)             
+ 703:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 704:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @}
+ 705:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 706:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 707:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_EC_TRGO Trigger Output
+ 708:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+ 709:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 710:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_TRGO_RESET                      0x00000000U                                     /*!<
+ 711:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_TRGO_ENABLE                     TIM_CR2_MMS_0                                   /*!<
+ 712:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_TRGO_UPDATE                     TIM_CR2_MMS_1                                   /*!<
+ 713:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_TRGO_CC1IF                      (TIM_CR2_MMS_1 | TIM_CR2_MMS_0)                 /*!<
+ 714:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_TRGO_OC1REF                     TIM_CR2_MMS_2                                   /*!<
+ARM GAS  /tmp/ccmDlXJ4.s 			page 16
+
+
+ 715:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_TRGO_OC2REF                     (TIM_CR2_MMS_2 | TIM_CR2_MMS_0)                 /*!<
+ 716:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_TRGO_OC3REF                     (TIM_CR2_MMS_2 | TIM_CR2_MMS_1)                 /*!<
+ 717:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_TRGO_OC4REF                     (TIM_CR2_MMS_2 | TIM_CR2_MMS_1 | TIM_CR2_MMS_0) /*!<
+ 718:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 719:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @}
+ 720:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 721:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 722:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 723:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_EC_SLAVEMODE Slave Mode
+ 724:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+ 725:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 726:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_SLAVEMODE_DISABLED              0x00000000U                         /*!< Slave mode 
+ 727:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_SLAVEMODE_RESET                 TIM_SMCR_SMS_2                      /*!< Reset Mode 
+ 728:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_SLAVEMODE_GATED                 (TIM_SMCR_SMS_2 | TIM_SMCR_SMS_0)   /*!< Gated Mode 
+ 729:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_SLAVEMODE_TRIGGER               (TIM_SMCR_SMS_2 | TIM_SMCR_SMS_1)   /*!< Trigger Mod
+ 730:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 731:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @}
+ 732:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 733:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 734:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_EC_TS Trigger Selection
+ 735:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+ 736:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 737:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_TS_ITR0                         0x00000000U                                         
+ 738:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_TS_ITR1                         TIM_SMCR_TS_0                                       
+ 739:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_TS_ITR2                         TIM_SMCR_TS_1                                       
+ 740:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_TS_ITR3                         (TIM_SMCR_TS_0 | TIM_SMCR_TS_1)                     
+ 741:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_TS_TI1F_ED                      TIM_SMCR_TS_2                                       
+ 742:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_TS_TI1FP1                       (TIM_SMCR_TS_2 | TIM_SMCR_TS_0)                     
+ 743:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_TS_TI2FP2                       (TIM_SMCR_TS_2 | TIM_SMCR_TS_1)                     
+ 744:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_TS_ETRF                         (TIM_SMCR_TS_2 | TIM_SMCR_TS_1 | TIM_SMCR_TS_0)     
+ 745:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 746:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @}
+ 747:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 748:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 749:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_EC_ETR_POLARITY External Trigger Polarity
+ 750:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+ 751:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 752:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_ETR_POLARITY_NONINVERTED        0x00000000U             /*!< ETR is non-inverted, ac
+ 753:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_ETR_POLARITY_INVERTED           TIM_SMCR_ETP            /*!< ETR is inverted, active
+ 754:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 755:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @}
+ 756:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 757:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 758:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_EC_ETR_PRESCALER External Trigger Prescaler
+ 759:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+ 760:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 761:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_ETR_PRESCALER_DIV1              0x00000000U             /*!< ETR prescaler OFF */
+ 762:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_ETR_PRESCALER_DIV2              TIM_SMCR_ETPS_0         /*!< ETR frequency is divide
+ 763:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_ETR_PRESCALER_DIV4              TIM_SMCR_ETPS_1         /*!< ETR frequency is divide
+ 764:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_ETR_PRESCALER_DIV8              TIM_SMCR_ETPS           /*!< ETR frequency is divide
+ 765:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 766:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @}
+ 767:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 768:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 769:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_EC_ETR_FILTER External Trigger Filter
+ 770:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+ 771:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ARM GAS  /tmp/ccmDlXJ4.s 			page 17
+
+
+ 772:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_ETR_FILTER_FDIV1                0x00000000U                                         
+ 773:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_ETR_FILTER_FDIV1_N2             TIM_SMCR_ETF_0                                      
+ 774:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_ETR_FILTER_FDIV1_N4             TIM_SMCR_ETF_1                                      
+ 775:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_ETR_FILTER_FDIV1_N8             (TIM_SMCR_ETF_1 | TIM_SMCR_ETF_0)                   
+ 776:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_ETR_FILTER_FDIV2_N6             TIM_SMCR_ETF_2                                      
+ 777:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_ETR_FILTER_FDIV2_N8             (TIM_SMCR_ETF_2 | TIM_SMCR_ETF_0)                   
+ 778:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_ETR_FILTER_FDIV4_N6             (TIM_SMCR_ETF_2 | TIM_SMCR_ETF_1)                   
+ 779:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_ETR_FILTER_FDIV4_N8             (TIM_SMCR_ETF_2 | TIM_SMCR_ETF_1 | TIM_SMCR_ETF_0)  
+ 780:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_ETR_FILTER_FDIV8_N6             TIM_SMCR_ETF_3                                      
+ 781:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_ETR_FILTER_FDIV8_N8             (TIM_SMCR_ETF_3 | TIM_SMCR_ETF_0)                   
+ 782:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_ETR_FILTER_FDIV16_N5            (TIM_SMCR_ETF_3 | TIM_SMCR_ETF_1)                   
+ 783:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_ETR_FILTER_FDIV16_N6            (TIM_SMCR_ETF_3 | TIM_SMCR_ETF_1 | TIM_SMCR_ETF_0)  
+ 784:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_ETR_FILTER_FDIV16_N8            (TIM_SMCR_ETF_3 | TIM_SMCR_ETF_2)                   
+ 785:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_ETR_FILTER_FDIV32_N5            (TIM_SMCR_ETF_3 | TIM_SMCR_ETF_2 | TIM_SMCR_ETF_0)  
+ 786:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_ETR_FILTER_FDIV32_N6            (TIM_SMCR_ETF_3 | TIM_SMCR_ETF_2 | TIM_SMCR_ETF_1)  
+ 787:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_ETR_FILTER_FDIV32_N8            TIM_SMCR_ETF                                        
+ 788:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 789:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @}
+ 790:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 791:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 792:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 793:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_EC_BREAK_POLARITY break polarity
+ 794:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+ 795:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 796:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_BREAK_POLARITY_LOW              0x00000000U               /*!< Break input BRK is ac
+ 797:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_BREAK_POLARITY_HIGH             TIM_BDTR_BKP              /*!< Break input BRK is ac
+ 798:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 799:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @}
+ 800:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 801:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 802:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 803:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 804:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 805:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_EC_OSSI OSSI
+ 806:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+ 807:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 808:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_OSSI_DISABLE                    0x00000000U             /*!< When inactive, OCx/OCxN
+ 809:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_OSSI_ENABLE                     TIM_BDTR_OSSI           /*!< When inactive, OxC/OCxN
+ 810:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 811:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @}
+ 812:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 813:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 814:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_EC_OSSR OSSR
+ 815:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+ 816:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 817:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_OSSR_DISABLE                    0x00000000U             /*!< When inactive, OCx/OCxN
+ 818:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_OSSR_ENABLE                     TIM_BDTR_OSSR           /*!< When inactive, OC/OCN o
+ 819:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 820:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @}
+ 821:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 822:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 823:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 824:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_EC_DMABURST_BASEADDR DMA Burst Base Address
+ 825:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+ 826:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 827:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_DMABURST_BASEADDR_CR1           0x00000000U                                         
+ 828:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_DMABURST_BASEADDR_CR2           TIM_DCR_DBA_0                                       
+ARM GAS  /tmp/ccmDlXJ4.s 			page 18
+
+
+ 829:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_DMABURST_BASEADDR_SMCR          TIM_DCR_DBA_1                                       
+ 830:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_DMABURST_BASEADDR_DIER          (TIM_DCR_DBA_1 |  TIM_DCR_DBA_0)                    
+ 831:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_DMABURST_BASEADDR_SR            TIM_DCR_DBA_2                                       
+ 832:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_DMABURST_BASEADDR_EGR           (TIM_DCR_DBA_2 | TIM_DCR_DBA_0)                     
+ 833:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_DMABURST_BASEADDR_CCMR1         (TIM_DCR_DBA_2 | TIM_DCR_DBA_1)                     
+ 834:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_DMABURST_BASEADDR_CCMR2         (TIM_DCR_DBA_2 | TIM_DCR_DBA_1 | TIM_DCR_DBA_0)     
+ 835:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_DMABURST_BASEADDR_CCER          TIM_DCR_DBA_3                                       
+ 836:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_DMABURST_BASEADDR_CNT           (TIM_DCR_DBA_3 | TIM_DCR_DBA_0)                     
+ 837:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_DMABURST_BASEADDR_PSC           (TIM_DCR_DBA_3 | TIM_DCR_DBA_1)                     
+ 838:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_DMABURST_BASEADDR_ARR           (TIM_DCR_DBA_3 | TIM_DCR_DBA_1 | TIM_DCR_DBA_0)     
+ 839:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_DMABURST_BASEADDR_RCR           (TIM_DCR_DBA_3 | TIM_DCR_DBA_2)                     
+ 840:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_DMABURST_BASEADDR_CCR1          (TIM_DCR_DBA_3 | TIM_DCR_DBA_2 | TIM_DCR_DBA_0)     
+ 841:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_DMABURST_BASEADDR_CCR2          (TIM_DCR_DBA_3 | TIM_DCR_DBA_2 | TIM_DCR_DBA_1)     
+ 842:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_DMABURST_BASEADDR_CCR3          (TIM_DCR_DBA_3 | TIM_DCR_DBA_2 | TIM_DCR_DBA_1 | TIM
+ 843:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_DMABURST_BASEADDR_CCR4          TIM_DCR_DBA_4                                       
+ 844:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_DMABURST_BASEADDR_BDTR          (TIM_DCR_DBA_4 | TIM_DCR_DBA_0)                     
+ 845:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 846:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @}
+ 847:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 848:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 849:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_EC_DMABURST_LENGTH DMA Burst Length
+ 850:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+ 851:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 852:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_DMABURST_LENGTH_1TRANSFER       0x00000000U                                         
+ 853:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_DMABURST_LENGTH_2TRANSFERS      TIM_DCR_DBL_0                                       
+ 854:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_DMABURST_LENGTH_3TRANSFERS      TIM_DCR_DBL_1                                       
+ 855:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_DMABURST_LENGTH_4TRANSFERS      (TIM_DCR_DBL_1 |  TIM_DCR_DBL_0)                    
+ 856:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_DMABURST_LENGTH_5TRANSFERS      TIM_DCR_DBL_2                                       
+ 857:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_DMABURST_LENGTH_6TRANSFERS      (TIM_DCR_DBL_2 | TIM_DCR_DBL_0)                     
+ 858:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_DMABURST_LENGTH_7TRANSFERS      (TIM_DCR_DBL_2 | TIM_DCR_DBL_1)                     
+ 859:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_DMABURST_LENGTH_8TRANSFERS      (TIM_DCR_DBL_2 | TIM_DCR_DBL_1 | TIM_DCR_DBL_0)     
+ 860:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_DMABURST_LENGTH_9TRANSFERS      TIM_DCR_DBL_3                                       
+ 861:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_DMABURST_LENGTH_10TRANSFERS     (TIM_DCR_DBL_3 | TIM_DCR_DBL_0)                     
+ 862:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_DMABURST_LENGTH_11TRANSFERS     (TIM_DCR_DBL_3 | TIM_DCR_DBL_1)                     
+ 863:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_DMABURST_LENGTH_12TRANSFERS     (TIM_DCR_DBL_3 | TIM_DCR_DBL_1 | TIM_DCR_DBL_0)     
+ 864:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_DMABURST_LENGTH_13TRANSFERS     (TIM_DCR_DBL_3 | TIM_DCR_DBL_2)                     
+ 865:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_DMABURST_LENGTH_14TRANSFERS     (TIM_DCR_DBL_3 | TIM_DCR_DBL_2 | TIM_DCR_DBL_0)     
+ 866:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_DMABURST_LENGTH_15TRANSFERS     (TIM_DCR_DBL_3 | TIM_DCR_DBL_2 | TIM_DCR_DBL_1)     
+ 867:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_DMABURST_LENGTH_16TRANSFERS     (TIM_DCR_DBL_3 | TIM_DCR_DBL_2 | TIM_DCR_DBL_1 | TIM
+ 868:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_DMABURST_LENGTH_17TRANSFERS     TIM_DCR_DBL_4                                       
+ 869:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_DMABURST_LENGTH_18TRANSFERS     (TIM_DCR_DBL_4 |  TIM_DCR_DBL_0)                    
+ 870:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 871:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @}
+ 872:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 873:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 874:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 875:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_TIM14_TI1_RMP_GPIO     TIM14_OR_RMP_MASK                                            
+ 876:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_TIM14_TI1_RMP_RTC_CLK  (TIM14_OR_TI1_RMP_0  | TIM14_OR_RMP_MASK)                    
+ 877:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_TIM14_TI1_RMP_HSE      (TIM14_OR_TI1_RMP_1  | TIM14_OR_RMP_MASK)                    
+ 878:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_TIM14_TI1_RMP_MCO      (TIM14_OR_TI1_RMP_0  | TIM14_OR_TI1_RMP_1  | TIM14_OR_RMP_MAS
+ 879:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 880:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 881:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_EC_OCREF_CLR_INT OCREF clear input selection
+ 882:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+ 883:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 884:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_OCREF_CLR_INT_OCREF_CLR     0x00000000U         /*!< OCREF_CLR_INT is connected to t
+ 885:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_OCREF_CLR_INT_ETR           TIM_SMCR_OCCS       /*!< OCREF_CLR_INT is connected to E
+ARM GAS  /tmp/ccmDlXJ4.s 			page 19
+
+
+ 886:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 887:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @}
+ 888:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 889:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 890:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 891:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @}
+ 892:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 893:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 894:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /* Exported macro ------------------------------------------------------------*/
+ 895:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_Exported_Macros TIM Exported Macros
+ 896:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+ 897:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 898:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 899:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_EM_WRITE_READ Common Write and read registers Macros
+ 900:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+ 901:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 902:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 903:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @brief  Write a value in TIM register.
+ 904:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @param  __INSTANCE__ TIM Instance
+ 905:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @param  __REG__ Register to be written
+ 906:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @param  __VALUE__ Value to be written in the register
+ 907:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @retval None
+ 908:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 909:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_WriteReg(__INSTANCE__, __REG__, __VALUE__) WRITE_REG((__INSTANCE__)->__REG__, (__VAL
+ 910:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 911:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 912:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @brief  Read a value in TIM register.
+ 913:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @param  __INSTANCE__ TIM Instance
+ 914:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @param  __REG__ Register to be read
+ 915:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @retval Register value
+ 916:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 917:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define LL_TIM_ReadReg(__INSTANCE__, __REG__) READ_REG((__INSTANCE__)->__REG__)
+ 918:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 919:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @}
+ 920:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 921:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 922:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_EM_Exported_Macros Exported_Macros
+ 923:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+ 924:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 925:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 926:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 927:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @brief  HELPER macro calculating DTG[0:7] in the TIMx_BDTR register to achieve the requested de
+ 928:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @note ex: @ref __LL_TIM_CALC_DEADTIME (80000000, @ref LL_TIM_GetClockDivision (), 120);
+ 929:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @param  __TIMCLK__ timer input clock frequency (in Hz)
+ 930:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @param  __CKD__ This parameter can be one of the following values:
+ 931:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   *         @arg @ref LL_TIM_CLOCKDIVISION_DIV1
+ 932:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   *         @arg @ref LL_TIM_CLOCKDIVISION_DIV2
+ 933:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   *         @arg @ref LL_TIM_CLOCKDIVISION_DIV4
+ 934:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @param  __DT__ deadtime duration (in ns)
+ 935:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @retval DTG[0:7]
+ 936:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 937:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define __LL_TIM_CALC_DEADTIME(__TIMCLK__, __CKD__, __DT__)  \
+ 938:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   ( (((uint64_t)((__DT__)*1000U)) < ((DT_DELAY_1+1U) * TIM_CALC_DTS((__TIMCLK__), (__CKD__))))    ?
+ 939:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****     (((uint64_t)((__DT__)*1000U)) < ((64U + (DT_DELAY_2+1U)) * 2U * TIM_CALC_DTS((__TIMCLK__), (__C
+ 940:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****     (((uint64_t)((__DT__)*1000U)) < ((32U + (DT_DELAY_3+1U)) * 8U * TIM_CALC_DTS((__TIMCLK__), (__C
+ 941:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****     (((uint64_t)((__DT__)*1000U)) < ((32U + (DT_DELAY_4+1U)) * 16U * TIM_CALC_DTS((__TIMCLK__), (__
+ 942:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****     0U)
+ARM GAS  /tmp/ccmDlXJ4.s 			page 20
+
+
+ 943:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 944:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 945:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @brief  HELPER macro calculating the prescaler value to achieve the required counter clock freq
+ 946:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @note ex: @ref __LL_TIM_CALC_PSC (80000000, 1000000);
+ 947:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @param  __TIMCLK__ timer input clock frequency (in Hz)
+ 948:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @param  __CNTCLK__ counter clock frequency (in Hz)
+ 949:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @retval Prescaler value  (between Min_Data=0 and Max_Data=65535)
+ 950:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 951:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define __LL_TIM_CALC_PSC(__TIMCLK__, __CNTCLK__)   \
+ 952:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   (((__TIMCLK__) >= (__CNTCLK__)) ? (uint32_t)(((__TIMCLK__)/(__CNTCLK__)) - 1U) : 0U)
+ 953:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 954:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 955:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @brief  HELPER macro calculating the auto-reload value to achieve the required output signal fr
+ 956:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @note ex: @ref __LL_TIM_CALC_ARR (1000000, @ref LL_TIM_GetPrescaler (), 10000);
+ 957:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @param  __TIMCLK__ timer input clock frequency (in Hz)
+ 958:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @param  __PSC__ prescaler
+ 959:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @param  __FREQ__ output signal frequency (in Hz)
+ 960:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @retval  Auto-reload value  (between Min_Data=0 and Max_Data=65535)
+ 961:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 962:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define __LL_TIM_CALC_ARR(__TIMCLK__, __PSC__, __FREQ__) \
+ 963:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   ((((__TIMCLK__)/((__PSC__) + 1U)) >= (__FREQ__)) ? (((__TIMCLK__)/((__FREQ__) * ((__PSC__) + 1U))
+ 964:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 965:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 966:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @brief  HELPER macro calculating the compare value required to achieve the required timer outpu
+ 967:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @note ex: @ref __LL_TIM_CALC_DELAY (1000000, @ref LL_TIM_GetPrescaler (), 10);
+ 968:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @param  __TIMCLK__ timer input clock frequency (in Hz)
+ 969:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @param  __PSC__ prescaler
+ 970:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @param  __DELAY__ timer output compare active/inactive delay (in us)
+ 971:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @retval Compare value  (between Min_Data=0 and Max_Data=65535)
+ 972:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 973:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define __LL_TIM_CALC_DELAY(__TIMCLK__, __PSC__, __DELAY__)  \
+ 974:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   ((uint32_t)(((uint64_t)(__TIMCLK__) * (uint64_t)(__DELAY__)) \
+ 975:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****               / ((uint64_t)1000000U * (uint64_t)((__PSC__) + 1U))))
+ 976:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 977:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 978:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @brief  HELPER macro calculating the auto-reload value to achieve the required pulse duration (
+ 979:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @note ex: @ref __LL_TIM_CALC_PULSE (1000000, @ref LL_TIM_GetPrescaler (), 10, 20);
+ 980:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @param  __TIMCLK__ timer input clock frequency (in Hz)
+ 981:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @param  __PSC__ prescaler
+ 982:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @param  __DELAY__ timer output compare active/inactive delay (in us)
+ 983:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @param  __PULSE__ pulse duration (in us)
+ 984:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @retval Auto-reload value  (between Min_Data=0 and Max_Data=65535)
+ 985:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ 986:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define __LL_TIM_CALC_PULSE(__TIMCLK__, __PSC__, __DELAY__, __PULSE__)  \
+ 987:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   ((uint32_t)(__LL_TIM_CALC_DELAY((__TIMCLK__), (__PSC__), (__PULSE__)) \
+ 988:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****               + __LL_TIM_CALC_DELAY((__TIMCLK__), (__PSC__), (__DELAY__))))
+ 989:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+ 990:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+ 991:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @brief  HELPER macro retrieving the ratio of the input capture prescaler
+ 992:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @note ex: @ref __LL_TIM_GET_ICPSC_RATIO (@ref LL_TIM_IC_GetPrescaler ());
+ 993:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @param  __ICPSC__ This parameter can be one of the following values:
+ 994:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   *         @arg @ref LL_TIM_ICPSC_DIV1
+ 995:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   *         @arg @ref LL_TIM_ICPSC_DIV2
+ 996:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   *         @arg @ref LL_TIM_ICPSC_DIV4
+ 997:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   *         @arg @ref LL_TIM_ICPSC_DIV8
+ 998:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @retval Input capture prescaler ratio (1, 2, 4 or 8)
+ 999:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+ARM GAS  /tmp/ccmDlXJ4.s 			page 21
+
+
+1000:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** #define __LL_TIM_GET_ICPSC_RATIO(__ICPSC__)  \
+1001:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   ((uint32_t)(0x01U << (((__ICPSC__) >> 16U) >> TIM_CCMR1_IC1PSC_Pos)))
+1002:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+1003:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+1004:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+1005:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @}
+1006:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+1007:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+1008:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+1009:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+1010:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @}
+1011:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+1012:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+1013:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /* Exported functions --------------------------------------------------------*/
+1014:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_Exported_Functions TIM Exported Functions
+1015:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+1016:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+1017:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+1018:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /** @defgroup TIM_LL_EF_Time_Base Time Base configuration
+1019:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @{
+1020:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+1021:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+1022:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @brief  Enable timer counter.
+1023:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @rmtoll CR1          CEN           LL_TIM_EnableCounter
+1024:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @param  TIMx Timer instance
+1025:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @retval None
+1026:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+1027:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** __STATIC_INLINE void LL_TIM_EnableCounter(TIM_TypeDef *TIMx)
+1028:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** {
+1029:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   SET_BIT(TIMx->CR1, TIM_CR1_CEN);
+1030:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** }
+1031:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** 
+1032:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** /**
+1033:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @brief  Disable timer counter.
+1034:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @rmtoll CR1          CEN           LL_TIM_DisableCounter
+1035:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @param  TIMx Timer instance
+1036:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   * @retval None
+1037:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   */
+1038:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** __STATIC_INLINE void LL_TIM_DisableCounter(TIM_TypeDef *TIMx)
+1039:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h **** {
+1040:Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h ****   CLEAR_BIT(TIMx->CR1, TIM_CR1_CEN);
+  88              		.loc 2 1040 0
+  89 004c 8022     		movs	r2, #128
+  90 004e 0121     		movs	r1, #1
+  91 0050 D205     		lsls	r2, r2, #23
+  92 0052 1368     		ldr	r3, [r2]
+  93              	.LBE5:
+  94              	.LBE4:
+  56:Core/Src/StepMotorParams.c **** 
+  57:Core/Src/StepMotorParams.c ****     LL_TIM_DisableCounter (SM_PULSE_TIMER);
+  58:Core/Src/StepMotorParams.c **** 
+  59:Core/Src/StepMotorParams.c ****     if (SM_Driver_Init_Step_Motor (0, &step_motor_0) == -1 ||
+  95              		.loc 1 59 0
+  96 0054 0020     		movs	r0, #0
+  97              	.LBB7:
+  98              	.LBB6:
+  99              		.loc 2 1040 0
+ARM GAS  /tmp/ccmDlXJ4.s 			page 22
+
+
+ 100 0056 8B43     		bics	r3, r1
+ 101 0058 1360     		str	r3, [r2]
+ 102              	.LVL4:
+ 103              	.LBE6:
+ 104              	.LBE7:
+ 105              		.loc 1 59 0
+ 106 005a 6946     		mov	r1, sp
+ 107 005c FFF7FEFF 		bl	SM_Driver_Init_Step_Motor
+ 108              	.LVL5:
+ 109 0060 431C     		adds	r3, r0, #1
+ 110 0062 13D0     		beq	.L4
+  60:Core/Src/StepMotorParams.c ****         SM_Driver_Init_Step_Motor (1, &step_motor_1) == -1 ||
+ 111              		.loc 1 60 0 discriminator 1
+ 112 0064 2100     		movs	r1, r4
+ 113 0066 0120     		movs	r0, #1
+ 114 0068 FFF7FEFF 		bl	SM_Driver_Init_Step_Motor
+ 115              	.LVL6:
+  59:Core/Src/StepMotorParams.c ****         SM_Driver_Init_Step_Motor (1, &step_motor_1) == -1 ||
+ 116              		.loc 1 59 0 discriminator 1
+ 117 006c 431C     		adds	r3, r0, #1
+ 118 006e 0DD0     		beq	.L4
+  61:Core/Src/StepMotorParams.c ****         SM_Driver_Init_Step_Motor (2, &step_motor_2) == -1)
+ 119              		.loc 1 61 0
+ 120 0070 3100     		movs	r1, r6
+ 121 0072 0220     		movs	r0, #2
+ 122 0074 FFF7FEFF 		bl	SM_Driver_Init_Step_Motor
+ 123              	.LVL7:
+  60:Core/Src/StepMotorParams.c ****         SM_Driver_Init_Step_Motor (1, &step_motor_1) == -1 ||
+ 124              		.loc 1 60 0
+ 125 0078 431C     		adds	r3, r0, #1
+ 126 007a 07D0     		beq	.L4
+  62:Core/Src/StepMotorParams.c ****         return -1;
+  63:Core/Src/StepMotorParams.c **** 
+  64:Core/Src/StepMotorParams.c ****     if (SM_Driver_Verifier () == -1)
+ 127              		.loc 1 64 0
+ 128 007c FFF7FEFF 		bl	SM_Driver_Verifier
+ 129              	.LVL8:
+ 130 0080 0130     		adds	r0, r0, #1
+ 131 0082 4342     		rsbs	r3, r0, #0
+ 132 0084 5841     		adcs	r0, r0, r3
+ 133 0086 4042     		rsbs	r0, r0, #0
+ 134              	.L1:
+  65:Core/Src/StepMotorParams.c ****         return -1;
+  66:Core/Src/StepMotorParams.c **** 
+  67:Core/Src/StepMotorParams.c ****     return 0;
+  68:Core/Src/StepMotorParams.c **** }...
+ 135              		.loc 1 68 0
+ 136 0088 13B0     		add	sp, sp, #76
+ 137              		@ sp needed
+ 138 008a F0BD     		pop	{r4, r5, r6, r7, pc}
+ 139              	.L4:
+  62:Core/Src/StepMotorParams.c ****         return -1;
+ 140              		.loc 1 62 0
+ 141 008c 0120     		movs	r0, #1
+ 142 008e 4042     		rsbs	r0, r0, #0
+ 143 0090 FAE7     		b	.L1
+ 144              	.L13:
+ARM GAS  /tmp/ccmDlXJ4.s 			page 23
+
+
+ 145 0092 C046     		.align	2
+ 146              	.L12:
+ 147 0094 00000000 		.word	.LANCHOR0
+ 148              		.cfi_endproc
+ 149              	.LFE529:
+ 151              		.section	.rodata
+ 152              		.align	2
+ 153              		.set	.LANCHOR0,. + 0
+ 154              	.LC0:
+ 155 0000 00000040 		.word	1073741824
+ 156 0004 01000000 		.word	1
+ 157 0008 00080048 		.word	1207961600
+ 158 000c 02000000 		.word	2
+ 159 0010 00080048 		.word	1207961600
+ 160 0014 01000000 		.word	1
+ 161              	.LC1:
+ 162 0018 00000040 		.word	1073741824
+ 163 001c 10000000 		.word	16
+ 164 0020 00080048 		.word	1207961600
+ 165 0024 04000000 		.word	4
+ 166 0028 00080048 		.word	1207961600
+ 167 002c 01000000 		.word	1
+ 168              	.LC2:
+ 169 0030 00000040 		.word	1073741824
+ 170 0034 00010000 		.word	256
+ 171 0038 00080048 		.word	1207961600
+ 172 003c 08000000 		.word	8
+ 173 0040 00080048 		.word	1207961600
+ 174 0044 01000000 		.word	1
+ 175              		.text
+ 176              	.Letext0:
+ 177              		.file 3 "/usr/include/newlib/machine/_default_types.h"
+ 178              		.file 4 "/usr/include/newlib/sys/_stdint.h"
+ 179              		.file 5 "Drivers/CMSIS/Device/ST/STM32F0xx/Include/system_stm32f0xx.h"
+ 180              		.file 6 "Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f051x8.h"
+ 181              		.file 7 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_dma.h"
+ 182              		.file 8 "/usr/include/newlib/sys/lock.h"
+ 183              		.file 9 "/usr/include/newlib/sys/_types.h"
+ 184              		.file 10 "/usr/lib/gcc/arm-none-eabi/6.3.1/include/stddef.h"
+ 185              		.file 11 "/usr/include/newlib/sys/reent.h"
+ 186              		.file 12 "/usr/include/newlib/stdlib.h"
+ 187              		.file 13 "Core/Inc/StepMotorLib.h"
+ 188              		.file 14 "Core/Inc/StepMotorDriver.h"
+ARM GAS  /tmp/ccmDlXJ4.s 			page 24
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 StepMotorParams.c
+     /tmp/ccmDlXJ4.s:16     .text.InitializeDriverStepMotors:0000000000000000 $t
+     /tmp/ccmDlXJ4.s:24     .text.InitializeDriverStepMotors:0000000000000000 InitializeDriverStepMotors
+     /tmp/ccmDlXJ4.s:147    .text.InitializeDriverStepMotors:0000000000000094 $d
+     /tmp/ccmDlXJ4.s:152    .rodata:0000000000000000 $d
+                     .debug_frame:0000000000000010 $d
+
+UNDEFINED SYMBOLS
+SM_Driver_Reset_All
+SM_Disable_TIM_Channel
+SM_Driver_Init_Step_Motor
+SM_Driver_Verifier

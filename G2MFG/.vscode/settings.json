@@ -49,6 +49,8 @@
         "stdexcept": "cpp",
         "cinttypes": "cpp",
         "typeinfo": "cpp",
-        "gcodegrammar.tab.hh": "c"
+        "gcodegrammar.tab.hh": "c",
+        "cerrno": "c",
+        "errno.h": "c"
     }
 }
