@@ -1,0 +1,15 @@
+core_cm0.h:623:22:__NVIC_EnableIRQ	16	static
+core_cm0.h:730:22:__NVIC_SetPriority	24	static
+stm32f0xx_ll_dma.h:602:22:LL_DMA_DisableChannel	16	static
+stm32f0xx_ll_dma.h:1720:22:LL_DMA_ClearFlag_GI4	16	static
+stm32f0xx_ll_dma.h:1735:22:LL_DMA_ClearFlag_GI5	16	static
+stm32f0xx_ll_dma.h:1813:22:LL_DMA_ClearFlag_TC4	16	static
+stm32f0xx_ll_dma.h:1824:22:LL_DMA_ClearFlag_TC5	16	static
+stm32f0xx_ll_dma.h:1975:22:LL_DMA_ClearFlag_TE4	16	static
+stm32f0xx_ll_dma.h:1986:22:LL_DMA_ClearFlag_TE5	16	static
+stm32f0xx_ll_dma.h:2038:22:LL_DMA_EnableIT_TC	16	static
+stm32f0xx_ll_dma.h:2076:22:LL_DMA_EnableIT_TE	16	static
+stm32f0xx_ll_bus.h:227:22:LL_AHB1_GRP1_EnableClock	24	static
+stm32f0xx_ll_usart.h:3536:22:LL_USART_EnableDMAReq_RX	16	static
+stm32f0xx_ll_usart.h:3569:22:LL_USART_EnableDMAReq_TX	16	static
+dma.c:38:6:MX_DMA_Init	8	static

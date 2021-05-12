@@ -5,7 +5,7 @@
 
 int main () {
     try {
-        mf::uart serial_port ("/dev/ttyUSB1");
+        mf::uart serial_port ("/dev/ttyUSB0");
 
         const char msg[] = "1234asdfghfhgkhgkjfgd";
         serial_port.write (msg, sizeof (msg));

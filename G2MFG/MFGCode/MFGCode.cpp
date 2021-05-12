@@ -2,7 +2,7 @@
 
 namespace mf {
 
-mfgcmd::mfgcmd (MFGCMD_ID cmd_id, uint32_t value) :
+mfgcmd::mfgcmd (MFGCMD_ID cmd_id, int32_t value) :
     cmd_id_ (cmd_id)
 {
     value_ = value;
@@ -30,8 +30,8 @@ static bool _is_correct_G1 (const gcode::frame_t& gframe) {
            gframe[3].GetId () == gcode::GCMD_ID::Z;
 }
 
-static uint32_t _convert_coord (float coord) {
-    return static_cast <uint32_t> (1000000 * coord);
+static int32_t _convert_coord (float coord) {
+    return static_cast <int32_t> (1000000 * coord);
 }
 
 static frame_t _convert_G1_g2mfg (const gcode::frame_t& gframe, kinematic& kinem) {
@@ -59,7 +59,7 @@ static frame_t _convert_g2mfg (const gcode::frame_t& gframe, kinematic& kinem) {
     switch (cmd_id)
     {
         case gcode::GCMD_ID::G: {
-            const unsigned value = gframe[0].GetUnsignedValue ();
+            const int32_t value = gframe[0].GetUnsignedValue ();
             switch (value) {
                 case 1:
                     return _convert_G1_g2mfg (gframe, kinem);
@@ -90,6 +90,18 @@ void mfgprogram::dump (std::ostream& output) {
 
         output << std::endl;
     }
+}
+
+int32_t mfgcmd::GetValue () const {
+    return value_;
+}
+
+frames_t::const_iterator mfgprogram::begin () {
+    return frames.begin ();
+}
+
+frames_t::const_iterator mfgprogram::end () {
+    return frames.end ();
 }
 
 }

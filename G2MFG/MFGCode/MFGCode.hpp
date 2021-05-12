@@ -15,12 +15,14 @@ public:
 private:
 
     MFGCMD_ID cmd_id_;
-    uint32_t value_;
+public: // Hack
+    int32_t value_;
 
 public:
-    mfgcmd (MFGCMD_ID cmd_id = MFGCMD_ID::EMPTY, uint32_t value = 0);
+    mfgcmd (MFGCMD_ID cmd_id = MFGCMD_ID::EMPTY, int32_t value = 0);
 
     MFGCMD_ID GetId () const;
+    int32_t GetValue () const;
     void dump (std::ostream& out = std::cout) const;
 };
 
@@ -35,6 +37,8 @@ public:
     mfgprogram (const gcode::gprogram& gprog, kinematic& kinem);
 
     void dump (std::ostream& output = std::cout);
+    frames_t::const_iterator begin ();
+    frames_t::const_iterator end ();
 };
 
 }

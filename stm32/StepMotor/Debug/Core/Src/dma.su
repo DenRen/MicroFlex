@@ -1,0 +1,4 @@
+core_cm0.h:623:22:__NVIC_EnableIRQ	16	static
+core_cm0.h:730:22:__NVIC_SetPriority	24	static
+stm32f0xx_ll_bus.h:227:22:LL_AHB1_GRP1_EnableClock	24	static
+dma.c:38:6:MX_DMA_Init	8	static

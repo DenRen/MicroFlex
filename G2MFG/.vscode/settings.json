@@ -51,6 +51,13 @@
         "typeinfo": "cpp",
         "gcodegrammar.tab.hh": "c",
         "cerrno": "c",
-        "errno.h": "c"
+        "errno.h": "c",
+        "ctime": "cpp",
+        "chrono": "cpp",
+        "complex": "cpp",
+        "ratio": "cpp",
+        "stop_token": "cpp",
+        "thread": "cpp",
+        "cfenv": "cpp"
     }
 }

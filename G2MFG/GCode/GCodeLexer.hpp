@@ -18,20 +18,19 @@ class gcmd {
 public:
 
 private:
-
     GCMD_ID cmd_id_;
 
     union {
-        unsigned uval;
+        int32_t uval;
         float fval;
     } value_;
 
 public:
-    gcmd (GCMD_ID cmd_id = GCMD_ID::EMPTY, unsigned value = 0);
+    gcmd (GCMD_ID cmd_id = GCMD_ID::EMPTY, int32_t value = 0);
     gcmd (GCMD_ID cmd_id, float value = 0.0f);
 
     GCMD_ID GetId () const;
-    unsigned GetUnsignedValue () const;
+    int32_t GetUnsignedValue () const;
     float GetFloatValue () const;
 
     void dump (std::ostream& out = std::cout) const;

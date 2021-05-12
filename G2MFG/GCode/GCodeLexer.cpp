@@ -5,7 +5,7 @@
 
 namespace gcode {
 
-gcmd::gcmd (GCMD_ID cmd_id, unsigned value) :
+gcmd::gcmd (GCMD_ID cmd_id, int32_t value) :
     cmd_id_ (cmd_id)
 {
     value_.uval = value;
@@ -21,7 +21,7 @@ GCMD_ID gcmd::GetId () const {
     return cmd_id_;
 }
 
-unsigned gcmd::GetUnsignedValue () const {
+int32_t gcmd::GetUnsignedValue () const {
     return value_.uval;
 }
 
@@ -81,7 +81,7 @@ GLexer::GLexer (std::istream& input, std::ostream& output) :
     yyFlexLexer (input, output)
 {}
 
-static unsigned str2uint (const std::string& str) {
+static int32_t str2uint (const std::string& str) {
     return static_cast <unsigned> (std::stoi (str));
 }
 static float str2float (const std::string& str) {
