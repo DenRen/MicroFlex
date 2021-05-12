@@ -65,6 +65,35 @@ public:
                           double phi0_0 = -M_PI_4, double phi1_0 = M_PI_4,
                           double eps = 1e-3);
     void dump (std::ostream& output = std::cout) const;
+
+    double get_h1  () const;
+    double get_r   () const;
+    double get_h2  () const;
+    double get_a   () const;
+    double get_h_d () const;
+    double get_H   () const;
+};
+
+class kinematic : public planar_kinematic {
+
+public:
+    kinematic () = delete;
+    kinematic (double h1, double r, double h2, double a,
+               double H, double h_d);
+
+    bool verifier () const;
+    vect_t calc_position (double phi0, double phi1, double phi2);
+    vect_t calc_angle    (double x, double y, double z,
+                          double phi0_0 = -M_PI_4, double phi1_0 = M_PI_4, double phi2_0 = 0,
+                          double eps = 1e-3);
+    void dump (std::ostream& output = std::cout) const;
+
+    double get_h1  () const;
+    double get_r   () const;
+    double get_h2  () const;
+    double get_a   () const;
+    double get_h_d () const;
+    double get_H   () const;
 };
 
 }

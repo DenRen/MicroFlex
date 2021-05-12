@@ -1,6 +1,5 @@
-#line 2 "GCodeScanner.cc"
 
-#line 4 "GCodeScanner.cc"
+#line 3 "<stdout>"
 
 #define  YY_INT_ALIGNED short int
 
@@ -287,6 +286,13 @@ typedef flex_uint8_t YY_CHAR;
 #include <FlexLexer.h>
 
 int yyFlexLexer::yywrap() { return 1; }
+int yyFlexLexer::yylex()
+	{
+	LexerError( "yyFlexLexer::yylex invoked but %option yyclass used" );
+	return 0;
+	}
+
+#define YY_DECL int gcode::GLexer::yylex()
 
 /* Done after the current pattern has been matched and before the
  * corresponding action - sets up yytext.
@@ -297,8 +303,8 @@ int yyFlexLexer::yywrap() { return 1; }
 	(yy_hold_char) = *yy_cp; \
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
-#define YY_NUM_RULES 5
-#define YY_END_OF_BUFFER 6
+#define YY_NUM_RULES 9
+#define YY_END_OF_BUFFER 10
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -306,23 +312,24 @@ struct yy_trans_info
 	flex_int32_t yy_verify;
 	flex_int32_t yy_nxt;
 	};
-static const flex_int16_t yy_accept[13] =
+static const flex_int16_t yy_accept[31] =
     {   0,
-        0,    0,    6,    4,    1,    1,    3,    3,    2,    1,
-        3,    0
+        0,    0,   10,    8,    1,    2,    7,    8,    8,    8,
+        8,    1,    2,    0,    6,    6,    3,    3,    4,    4,
+        0,    5,    5,    6,    6,    3,    4,    5,    5,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
     {   0,
         1,    1,    1,    1,    1,    1,    1,    1,    2,    3,
-        2,    1,    2,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    2,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    4,    5,    5,
-        5,    5,    5,    5,    5,    5,    5,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        6,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    2,    1,    1,    1,    1,    4,    1,    1,    1,
+        1,    1,    1,    1,    1,    5,    1,    6,    7,    7,
+        7,    7,    7,    7,    7,    7,    7,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    8,
+        9,    1,    1,    1,    1,    1,   10,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,   11,   11,   11,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
 
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -344,33 +351,46 @@ static const YY_CHAR yy_ec[256] =
         1,    1,    1,    1,    1
     } ;
 
-static const YY_CHAR yy_meta[7] =
+static const YY_CHAR yy_meta[12] =
     {   0,
-        1,    2,    2,    3,    3,    1
+        1,    1,    1,    1,    2,    3,    3,    1,    1,    1,
+        1
     } ;
 
-static const flex_int16_t yy_base[15] =
+static const flex_int16_t yy_base[35] =
     {   0,
-        0,    0,    9,   10,    0,    0,   10,    0,   10,    0,
-        0,   10,    6,    4
+        0,    0,   42,   43,   39,   37,   43,    7,    9,   11,
+       14,   37,   35,   30,   31,   30,   43,    0,   43,    0,
+       27,   28,   27,   24,   25,    0,    0,   22,   23,   43,
+       20,   24,   23,   22
     } ;
 
-static const flex_int16_t yy_def[15] =
+static const flex_int16_t yy_def[35] =
     {   0,
-       12,    1,   12,   12,   13,   13,   12,   14,   12,   13,
-       14,    0,   12,   12
+       30,    1,   30,   30,   30,   30,   30,   30,   30,   30,
+       30,   30,   30,   30,   30,   31,   30,   32,   30,   33,
+       30,   30,   34,   30,   31,   32,   33,   30,   34,    0,
+       30,   30,   30,   30
     } ;
 
-static const flex_int16_t yy_nxt[17] =
+static const flex_int16_t yy_nxt[55] =
     {   0,
-        4,    5,    6,    7,    8,    9,   11,   10,   12,    3,
-       12,   12,   12,   12,   12,   12
+        4,    5,    6,    7,    4,    4,    4,    8,    9,   10,
+       11,   14,   15,   16,   17,   18,   19,   20,   21,   22,
+       23,   25,   25,   29,   29,   27,   26,   21,   28,   14,
+       24,   21,   21,   28,   14,   14,   24,   13,   12,   13,
+       12,   30,    3,   30,   30,   30,   30,   30,   30,   30,
+       30,   30,   30,   30
     } ;
 
-static const flex_int16_t yy_chk[17] =
+static const flex_int16_t yy_chk[55] =
     {   0,
-        1,    1,    1,    1,    1,    1,   14,   13,    3,   12,
-       12,   12,   12,   12,   12,   12
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    8,    8,    8,    9,    9,   10,   10,   11,   11,
+       11,   31,   31,   34,   34,   33,   32,   29,   28,   25,
+       24,   23,   22,   21,   16,   15,   14,   13,   12,    6,
+        5,    3,   30,   30,   30,   30,   30,   30,   30,   30,
+       30,   30,   30,   30
     } ;
 
 /* The intent behind this definition is that it'll catch
@@ -381,12 +401,12 @@ static const flex_int16_t yy_chk[17] =
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 #line 1 "GCodeScanner.l"
-#line 5 "GCodeScanner.l"
+#line 6 "GCodeScanner.l"
 
-#include "GCodeGrammar.tab.hh"
+#include "GCodeLexer.hpp"
 
-#line 389 "GCodeScanner.cc"
-#line 390 "GCodeScanner.cc"
+#line 409 "<stdout>"
+#line 410 "<stdout>"
 
 #define INITIAL 0
 
@@ -518,10 +538,10 @@ YY_DECL
 		}
 
 	{
-#line 20 "GCodeScanner.l"
+#line 24 "GCodeScanner.l"
 
 
-#line 525 "GCodeScanner.cc"
+#line 545 "<stdout>"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -548,13 +568,13 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 13 )
+				if ( yy_current_state >= 31 )
 					yy_c = yy_meta[yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 10 );
+		while ( yy_base[yy_current_state] != 43 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -579,32 +599,52 @@ do_action:	/* This label is used only to access EOF actions. */
 			goto yy_find_action;
 
 case 1:
-/* rule 1 can match eol */
 YY_RULE_SETUP
-#line 22 "GCodeScanner.l"
+#line 26 "GCodeScanner.l"
 /* Skip blanks and tabs */
 	YY_BREAK
 case 2:
+/* rule 2 can match eol */
 YY_RULE_SETUP
-#line 23 "GCodeScanner.l"
-return yy::parser::token_type::GCODE;
+#line 27 "GCodeScanner.l"
+return process_new_line ();
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 24 "GCodeScanner.l"
-return yy::parser::token_type::NUMBER;
+#line 29 "GCodeScanner.l"
+return process_Gcmd ();
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 25 "GCodeScanner.l"
-return yy::parser::token_type::ERR;
+#line 30 "GCodeScanner.l"
+return process_Mcmd ();
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 27 "GCodeScanner.l"
+#line 32 "GCodeScanner.l"
+return process_coord ();
+	YY_BREAK
+case 6:
+YY_RULE_SETUP
+#line 33 "GCodeScanner.l"
+return process_speed ();
+	YY_BREAK
+case 7:
+YY_RULE_SETUP
+#line 35 "GCodeScanner.l"
+return process_percent ();
+	YY_BREAK
+case 8:
+YY_RULE_SETUP
+#line 36 "GCodeScanner.l"
+return procces_unexpected_cmd ();
+	YY_BREAK
+case 9:
+YY_RULE_SETUP
+#line 38 "GCodeScanner.l"
 ECHO;
 	YY_BREAK
-#line 608 "GCodeScanner.cc"
+#line 648 "<stdout>"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1021,7 +1061,7 @@ int yyFlexLexer::yy_get_next_buffer()
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 13 )
+			if ( yy_current_state >= 31 )
 				yy_c = yy_meta[yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
@@ -1049,11 +1089,11 @@ int yyFlexLexer::yy_get_next_buffer()
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 13 )
+		if ( yy_current_state >= 31 )
 			yy_c = yy_meta[yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
-	yy_is_jam = (yy_current_state == 12);
+	yy_is_jam = (yy_current_state == 30);
 
 	return yy_is_jam ? 0 : yy_current_state;
 }
@@ -1565,5 +1605,5 @@ void yyfree (void * ptr )
 			free( (char *) ptr );	/* see yyrealloc() for (char *) cast */
 }
 
-#line 27 "GCodeScanner.l"
+#line 38 "GCodeScanner.l"
 

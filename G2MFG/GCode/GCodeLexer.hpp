@@ -10,7 +10,7 @@
 
 namespace gcode {
 
-enum class CMD_ID {
+enum class GCMD_ID {
     EMPTY = 0, G, M, X, Y, Z, F, PERCENT
 };
 
@@ -19,7 +19,7 @@ public:
 
 private:
 
-    CMD_ID cmd_id_;
+    GCMD_ID cmd_id_;
 
     union {
         unsigned uval;
@@ -27,26 +27,14 @@ private:
     } value_;
 
 public:
-    gcmd (CMD_ID cmd_id = CMD_ID::EMPTY, unsigned value = 0) :
-        cmd_id_ (cmd_id)
-    {
-        value_.uval = value;
-    }
+    gcmd (GCMD_ID cmd_id = GCMD_ID::EMPTY, unsigned value = 0);
+    gcmd (GCMD_ID cmd_id, float value = 0.0f);
 
-    gcmd (CMD_ID cmd_id, float value = 0.0f) :
-        cmd_id_ (cmd_id)
-    {
-        value_.fval = value;
-    }
+    GCMD_ID GetId () const;
+    unsigned GetUnsignedValue () const;
+    float GetFloatValue () const;
 
-    CMD_ID GetId () const {
-        return cmd_id_;
-    }
-
-    void dump (std::ostream& out = std::cout) const {
-        out << "id[" << static_cast <int> (cmd_id_) << "]: " 
-        << "uint: " << value_.uval << ", float: " << value_.fval; 
-    }
+    void dump (std::ostream& out = std::cout) const;
 };
 
 using frame_t  = std::vector <gcmd>;
@@ -62,8 +50,11 @@ public:
     void add_command (const gcmd& comamnd);
     void add_new_line ();
     void dump (std::ostream& output = std::cout);
-};
 
+    size_t size () const;
+    frames_t::const_iterator begin () const;
+    frames_t::const_iterator end () const;
+};
 
 class GLexer : public yyFlexLexer {
 
@@ -81,8 +72,8 @@ class GLexer : public yyFlexLexer {
     int process_new_line ();
     int procces_unexpected_cmd ();
 
-    void add_uint_cmd  (CMD_ID cmd_id, const std::string& str_val);
-    void add_float_cmd (CMD_ID cmd_id, const std::string& str_val);
+    void add_uint_cmd  (GCMD_ID cmd_id, const std::string& str_val);
+    void add_float_cmd (GCMD_ID cmd_id, const std::string& str_val);
 
 public:
 

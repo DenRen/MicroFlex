@@ -8,13 +8,13 @@
 #include "GCodeGrammar.tab.hh"
 #include <vector>
 
-enum class CMD_ID {
+enum class GCMD_ID {
     G, M, X, Y, Z, F
 };
 
 class Igcode {
 public:
-    CMD_ID GetId () const;
+    GCMD_ID GetId () const;
     virtual ~Igcode ();
 
     virtual void dump (std::ostream& out = std::cout) const;
@@ -22,16 +22,16 @@ public:
 
 template <typename T>
 class gcode : public Igcode {
-    CMD_ID cmd_id_;
+    GCMD_ID cmd_id_;
     T value_;
 
 public:
-    gcode (CMD_ID cmd_id, T value = 0) :
+    gcode (GCMD_ID cmd_id, T value = 0) :
         cmd_id_ (cmd_id),
         value_ (value)
     {}
 
-    CMD_ID GetId () const override {
+    GCMD_ID GetId () const override {
         return cmd_id_;
     }
 

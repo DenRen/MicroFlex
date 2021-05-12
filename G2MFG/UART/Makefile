@@ -18,7 +18,7 @@ CFLAGS 	 = $(FLAGS)
 CXXFLAGS = $(FLAGS)
 LDFLAGS  = $(FLAGS)
 
-OBJS = libuart_old.o debug_func.o serial.o main.o 
+OBJS = libuart.o debug_func.o main.o 
 MAIN_TARGET = main.out
 
 # Main -------------------------

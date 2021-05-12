@@ -1,11 +1,7 @@
-// Tasks: G28, G1 with F arg
-#include <iostream>
+#include "MFGCode/MFGCode.hpp"
 #include <fstream>
-#include <string>
 
-#include "GCodeLexer.hpp"
-
-const char name_file[] = "test_full.gcode";
+const char name_file[] = "GCode/test_Gx.gcode";
 
 int main () {
     std::ifstream gcode_file (name_file);
@@ -15,7 +11,8 @@ int main () {
     gprog.dump ();
     std::cout << std::endl;
 
-    
+    mf::kinematic kinematic (178, 65, 180, 81.6, 230, 76);
 
-    
+    mf::mfgprogram mfprog (gprog, kinematic);
+    mfprog.dump ();    
 }

@@ -1,35 +1,34 @@
 #include "libuart.hpp"
 
+#include "debug_func.hpp"
 #include <unistd.h>
 #include <fcntl.h>
-#include "debug_func.hpp"
+#include <iostream>
 #include <cstring>
 #include <stdexcept>
 
 namespace mf {
 
-int open_port (const char* name_port, int flags) {
-    int serial_port = open (name_port, flags);
-    if (serial_port < 0) {
+void uart::open_port (const char* name_port, int flags) {
+    serial_port_ = open (name_port, flags);
+    if (serial_port_ < 0) {
         perror ("open");
         throw std::runtime_error ("Failed to open serial port");
     }
-
-    return serial_port;
 }
 
 // serial_port - correct
-static void configure_port (int serial_port, BAUDRATE baud_rate, int vmin, int vtime) {
+void uart::configure_port (BAUDRATE baud_rate, int vmin, int vtime) {
 
     struct termios tty = {0};
-    if (tcgetattr (serial_port, &tty) != 0) {
+    if (tcgetattr (serial_port_, &tty) != 0) {
         perror ("tcgetattr");
-        close (serial_port);
+        close (serial_port_);
         throw std::runtime_error ("Failed to get attr from serial port");
     }
     
     //  Control mode flags
-    tty.c_cflag |= PARENB;  // Parity
+    tty.c_cflag &= ~PARENB; // Parity
     tty.c_cflag |= CSTOPB;  // Num Stop Bits
 
     tty.c_cflag &= ~CSIZE;  // Cleer size 
@@ -62,12 +61,15 @@ static void configure_port (int serial_port, BAUDRATE baud_rate, int vmin, int v
 
     // Baud Rate
 
-    cfsetispeed (&tty, static_cast <int> (baud_rate));
-    cfsetospeed (&tty, static_cast <int> (baud_rate));
+    //cfsetispeed (&tty, static_cast <int> (baud_rate));
+    //cfsetospeed (&tty, static_cast <int> (baud_rate));
 
-    if (tcsetattr (serial_port, TCSANOW, &tty) != 0) {
+    cfsetispeed (&tty, B115200);
+    cfsetospeed (&tty, B115200);
+
+    if (tcsetattr (serial_port_, TCSANOW, &tty) != 0) {
         perror ("tcsetattr");
-        close (serial_port);
+        close (serial_port_);
         throw std::runtime_error ("Failed to get attr from serial port");
     }
 }
@@ -75,12 +77,54 @@ static void configure_port (int serial_port, BAUDRATE baud_rate, int vmin, int v
 uart::uart (const char* name_port, int flags, BAUDRATE baud_rate,
             int vmin, int vtime)
 {
-    int serial_port = open_port (name_port, flags);   
-    configure_port (serial_port, baud_rate, vmin, vtime);
+    open_port (name_port, flags);   
+    configure_port (baud_rate, vmin, vtime);
 }
 
 uart::~uart () {
     close (serial_port_);
+}
+
+void uart::write (const char* src, size_t size) {
+    if (src == nullptr) {
+        std::cerr << strerror (EINVAL) << std::endl;
+        throw std::invalid_argument ("Source is nullptr!");
+    }
+
+    int len = 0;
+    while (size) {
+        len = ::write (serial_port_, src, size);
+        if (len == -1) {
+            perror ("write");
+            throw std::runtime_error ("Error write");
+        }
+        else if (len == 0)
+            throw std::runtime_error ("An attempt was made to write to a closed port\n");
+
+        size -= len;
+    }
+
+}
+
+void uart::read  (char* dst, size_t size) {
+    if (dst == nullptr) {
+        errno = EINVAL;
+        throw std::invalid_argument ("Source is nullptr!");
+    }
+
+    int len = 0;
+    while (size) {
+        len = ::read (serial_port_, dst, size);
+        if (len == -1) {
+            perror ("read");
+            throw std::runtime_error ("Error read");
+        }
+        else if (len == 0)
+            throw std::runtime_error ("An attempt was made to read to a closed port\n");
+
+        size -= len;
+        dst += len;
+    }
 }
 
 }

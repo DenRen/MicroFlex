@@ -109,18 +109,10 @@ vect_t four_link_mechanism::calc_positon (double phi) {
 // Getter functions --------------------------------------------------------
 // ================//
 
-double four_link_mechanism::get_h1 () const {
-    return h1;
-}
-double four_link_mechanism::get_r  () const {
-    return r;
-}
-double four_link_mechanism::get_h2 () const {
-    return h2;
-}
-double four_link_mechanism::get_a  () const {
-    return a;
-}
+double four_link_mechanism::get_h1 () const { return h1; }
+double four_link_mechanism::get_r  () const { return r;  }
+double four_link_mechanism::get_h2 () const { return h2; }
+double four_link_mechanism::get_a  () const { return a;  }
 
 // ================\\
 // Planar kinematic --------------------------------------------------------
@@ -310,4 +302,72 @@ void planar_kinematic::dump (std::ostream& output) const {
     l4_mech.dump ();
 }
 
+// ================\\
+// Getter functions --------------------------------------------------------
+// ================//
+
+double planar_kinematic::get_h1  () const { return l4_mech.get_h1 (); }
+double planar_kinematic::get_r   () const { return l4_mech.get_r  (); }
+double planar_kinematic::get_h2  () const { return l4_mech.get_h2 (); }
+double planar_kinematic::get_a   () const { return l4_mech.get_a  (); }
+double planar_kinematic::get_h_d () const { return h_d;               }
+double planar_kinematic::get_H   () const { return H;                 }
+
+// =========\\
+// Kinematic --------------------------------------------------------
+// =========//
+
+kinematic::kinematic (double h1, double r, double h2, double a,
+                      double H, double h_d) :
+    planar_kinematic (h1, r, h2, a, H, h_d)
+{}
+
+bool kinematic::verifier () const {
+    return planar_kinematic::verifier ();
+}
+
+vect_t kinematic::calc_position (double phi0, double phi1, double phi2) {
+    vect_t plan_coord = planar_kinematic::calc_position (phi0, phi1);
+
+    if (std::isnormal (plan_coord (0)) == false || std::isnormal (plan_coord (1)) == false)
+        throw std::runtime_error ("kinematic: Failed to calc position. Numbers are not normal\n");
+
+    vect_t coord (3);
+    coord (0) = plan_coord (0) * cos (phi2);
+    coord (1) = plan_coord (0) * sin (phi2);
+    coord (2) = plan_coord (1);
+
+    return coord;
+}
+
+vect_t kinematic::calc_angle (double x, double y, double z,
+                              double phi0_0, double phi1_0, double phi2_0,
+                              double eps)
+{
+    const double ro = sqrt (x * x + y * y);
+    vect_t plan_angle = planar_kinematic::calc_angle (ro, z, phi0_0, phi1_0, eps);
+
+    if (std::isnormal (plan_angle (0)) == false || std::isnormal (plan_angle (1)) == false)
+        throw std::runtime_error ("kinematic: Failed to calc planar angle. Numbers are not normal\n");
+
+    double phi2 = asin (y / ro);
+    if (x < 0) {
+        if (y > 0)
+            phi2 = M_PI - y;
+        else
+            phi2 -= M_PI;
+    }
+
+    vect_t angle (3);
+    angle (0) = plan_angle (0);
+    angle (1) = plan_angle (1);
+    angle (2) = phi2;
+
+    return angle;
+}
+
+void kinematic::dump (std::ostream& output) const {
+    std::cout << "Dump kinemtic:" << std::endl;
+    planar_kinematic::dump ();
+}
 }
