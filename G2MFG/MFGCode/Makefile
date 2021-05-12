@@ -19,9 +19,9 @@ CFLAGS 	 = $(FLAGS)
 CXXFLAGS = $(FLAGS)
 LDFLAGS  = $(FLAGS)
 
-OBJS = GCodeLexer.o GCodeScanner.o  main.o
+OBJS = MFGCode.o
 MAIN_TARGET = main.out
-LIB_NAME = gcode
+LIB_NAME = mfgcode
 
 LEX_FILES = GCodeScanner.l
 

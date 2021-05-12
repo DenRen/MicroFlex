@@ -58,7 +58,7 @@ static frame_t _convert_g2mfg (const gcode::frame_t& gframe, kinematic& kinem) {
     gcode::GCMD_ID cmd_id = gframe[0].GetId ();
     switch (cmd_id)
     {
-        case gcode::GCMD_ID::G:
+        case gcode::GCMD_ID::G: {
             const unsigned value = gframe[0].GetUnsignedValue ();
             switch (value) {
                 case 1:
@@ -68,6 +68,7 @@ static frame_t _convert_g2mfg (const gcode::frame_t& gframe, kinematic& kinem) {
                 default:
                     throw std::invalid_argument ("Incorrect G value");   
             }
+        }
         default:
             throw std::invalid_argument ("Incorrect GCode");
     }
@@ -80,7 +81,7 @@ mfgprogram::mfgprogram (const gcode::gprogram& gprog, kinematic& kinem) :
         frames.push_back (_convert_g2mfg (*it_gframe, kinem));
 }
 
-void mfgprogram::dump (std::ostream& output = std::cout) {
+void mfgprogram::dump (std::ostream& output) {
     std::cout << "Number line: " << frames.size () << std::endl;
 
     for (auto frame : frames) {

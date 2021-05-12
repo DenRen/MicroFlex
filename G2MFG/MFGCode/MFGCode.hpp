@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../GCode/GCodeLexer.hpp"
-#include "../../InverseKinematic/kinematic.hpp"
+#include "../InverseKinematic/kinematic.hpp"
 
 namespace mf {
 

@@ -29,7 +29,7 @@ int main () {
     mf::kinematic kinem (178, 65, 180, 81.6, 230, 76);
     std::cout << "phi0: " << phi0 << ", phi1: " << phi1 << std::endl;
 
-    mf::vect_t pos3 = kinem.calc_position (phi0, phi1);
+    mf::vect_t pos3 = kinem.calc_position (phi0, phi1, 0);
     std::cout << "pos: " << pos3 << std::endl;
 
     mf::vect_t phi3 = kinem.calc_angle (pos3(0), pos3 (1), pos3 (2));
